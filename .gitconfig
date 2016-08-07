@@ -1,0 +1,9 @@
+[user]
+	name = Youssef Boulkaid
+	email = youssef.boulkaid@bukowskis.com
+[push]
+	default = matching
+[alias]
+	co = checkout
+	st = s
+	s = status
