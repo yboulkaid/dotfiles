@@ -7,6 +7,8 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 . ~/.fancy_git_prompt
 
 # Shell
+alias ll="ls -la"       # List in long format, include dotfiles
+alias ..="cd .."
 alias s='sublime'
 alias ss='sublime .'
 alias fs='forego start'

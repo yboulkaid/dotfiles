@@ -1,1 +1,7 @@
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+# Single tab press
+set show-all-if-ambiguous on
+
 "\C-n": menu-complete
