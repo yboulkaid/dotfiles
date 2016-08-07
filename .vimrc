@@ -70,7 +70,7 @@ nmap <leader>vr :tabedit $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 
 " Open explorer
-map <leader>k :E<cr>
+map <leader>k :Explore<cr>
 
 " Leader F for search
 map <leader>f :Ggrep 

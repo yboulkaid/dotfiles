@@ -1,22 +1,10 @@
 export PATH=/usr/local/bin:~/bin:$PATH
-
 export EDITOR=vim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Run twolfson/sexy-bash-prompt
-. ~/.fancy_git_prompt
-
-# Shell
-alias ll="ls -la"       # List in long format, include dotfiles
-alias ..="cd .."
-alias s='sublime'
-alias ss='sublime .'
-alias fs='forego start'
-alias log='tail -f log/development.log'
-alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
-alias o='cd ~/YoussefProjects/o-market'
-alias b='cd ~/YoussefProjects/biougrita'
-alias deploy='git push heroku master'
+. ~/dotfiles/.fancy_git_prompt
+. ~/dotfiles/.aliases 
 
 ### BIOSPHERE MANAGED START ###
 
