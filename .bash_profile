@@ -2,7 +2,7 @@ export PATH=/usr/local/bin:~/bin:$PATH
 export EDITOR=vim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-# Run twolfson/sexy-bash-prompt
+
 . ~/dotfiles/.fancy_git_prompt
 . ~/dotfiles/.aliases 
 

@@ -7,4 +7,5 @@ alias log='tail -f log/development.log'
 alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
 alias o='cd ~/YoussefProjects/o-market'
 alias b='cd ~/YoussefProjects/biougrita'
+alias vim=nvim
 alias deploy='git push heroku master'
