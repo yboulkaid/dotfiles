@@ -9,3 +9,5 @@ alias o='cd ~/YoussefProjects/o-market'
 alias b='cd ~/YoussefProjects/biougrita'
 alias vim=nvim
 alias deploy='git push heroku master'
+
+alias pi='cd ~/Projects/ios-app'
