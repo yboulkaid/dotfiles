@@ -7,6 +7,9 @@ set lazyredraw                  " Don't update while executing macros
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set noswapfile " Remove temporary swap file
 
+set shortmess+=I " No intro when starting Vim
+set cursorline " Highligt the cursor line
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -23,12 +26,21 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
-
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 
-autocmd BufNewFile,BufRead Gemfile set filetype=ruby
-autocmd BufWritePost,BufEnter * Neomake
+autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
+let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
+" Always show sign column
+augroup setup_linter
+  autocmd!
+  autocmd BufWritePost * Neomake
+  autocmd BufEnter * sign define dummy
+  autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+augroup END
 
 set tabstop=2
 set shiftwidth=2
@@ -41,13 +53,25 @@ colorscheme blackboard
 nmap <Tab> :bn<cr>
 nmap <S-Tab> :bp<cr>
 
+nmap <leader>w :BD<cr>
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " Run ruby matchit
 runtime macros/matchit.vim
 
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 " Remove trailing whitespace
 autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Go to method definition
+nmap <F12> :tag <C-R><C-W> <cr>
+
+" Comment shortcut
+nmap <leader>cc <plug>NERDCommenterToggle
+let g:NERDSpaceDelims = 1
 
 nmap <silent> <C-p> :GFiles<cr>
 nmap <silent> <C-h> :History<cr>
@@ -70,6 +94,7 @@ nmap <leader>so :source $MYVIMRC<cr>
 
 " Open explorer
 map <leader>k :NERDTreeToggle<cr>
+nmap <F10> :NERDTreeFind<cr>
 
 " Leader F for search
 map <leader>f :Ggrep 
