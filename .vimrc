@@ -12,23 +12,22 @@ set cursorline " Highligt the cursor line
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'slim-template/vim-slim.git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'neomake/neomake'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'Valloric/YouCompleteMe'
+  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'junegunn/fzf'
+  Plugin 'junegunn/fzf.vim'
+  Plugin 'slim-template/vim-slim.git'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'fholgado/minibufexpl.vim'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'neomake/neomake'
+  Plugin 'MarcWeber/vim-addon-mw-utils'
+  Plugin 'tomtom/tlib_vim'
+  Plugin 'garbas/vim-snipmate'
+  Plugin 'honza/vim-snippets'
+  Plugin 'ervandew/supertab'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'qpkorr/vim-bufkill'
+  Plugin 'Shougo/deoplete.nvim'
 call vundle#end()            " required
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
@@ -56,7 +55,12 @@ nmap <S-Tab> :bp<cr>
 nmap <leader>w :BD<cr>
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" Run deoplete
+let g:deoplete#enable_at_startup = 1
+
+
 " Run ruby matchit
 runtime macros/matchit.vim
 
