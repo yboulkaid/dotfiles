@@ -24,7 +24,7 @@ call vundle#begin()
   Plugin 'tomtom/tlib_vim'
   Plugin 'garbas/vim-snipmate'
   Plugin 'honza/vim-snippets'
-  Plugin 'ervandew/supertab'
+  " Plugin 'ervandew/supertab'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'qpkorr/vim-bufkill'
   Plugin 'Shougo/deoplete.nvim'
@@ -54,18 +54,17 @@ nmap <S-Tab> :bp<cr>
 
 nmap <leader>w :BD<cr>
 
-" Supertab
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
 " Run deoplete
 let g:deoplete#enable_at_startup = 1
 
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Run ruby matchit
 runtime macros/matchit.vim
 
-" <Ctrl-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+" redraws the screen and removes any search highlighting.
+nnoremap <silent> <leader>l :noh<CR>
 
 " Remove trailing whitespace
 autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -74,12 +73,21 @@ autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript autocmd BufWrit
 nmap <F12> :tag <C-R><C-W> <cr>
 
 " Comment shortcut
-nmap <leader>cc <plug>NERDCommenterToggle
+nmap <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 nmap <silent> <C-p> :GFiles<cr>
-nmap <silent> <C-h> :History<cr>
-nmap <silent> <C-b> :MBEFocus<cr>
+
+" Easier window switching
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" More natural splits
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
 
 autocmd QuickFixCmdPost *grep* cwindow
 nmap ö :cn<cr>
@@ -89,6 +97,11 @@ nmap <leader>x :ccl<cr>
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
+
+" Sane defaults for searching
+set ignorecase
+set smartcase
+set gdefault
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger
 nmap <leader>vr :tabedit $MYVIMRC<cr>
