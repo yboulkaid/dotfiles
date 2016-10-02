@@ -1,4 +1,6 @@
 let mapleader = "\<Space>"
+set clipboard=unnamed
+language en_US
 
 filetype off                  " required
 set number                      " Display line numbers beside buffer
@@ -15,7 +17,6 @@ call vundle#begin()
   Plugin 'VundleVim/Vundle.vim'
   Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim'
-  Plugin 'slim-template/vim-slim.git'
   Plugin 'tpope/vim-fugitive'
   Plugin 'fholgado/minibufexpl.vim'
   Plugin 'scrooloose/nerdtree'
@@ -24,15 +25,29 @@ call vundle#begin()
   Plugin 'tomtom/tlib_vim'
   Plugin 'garbas/vim-snipmate'
   Plugin 'honza/vim-snippets'
-  " Plugin 'ervandew/supertab'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'qpkorr/vim-bufkill'
   Plugin 'Shougo/deoplete.nvim'
+  Plugin 'Shougo/neosnippet.vim'
+  Plugin 'Shougo/neosnippet-snippets'
+
+  " Syntax
+  Plugin 'yoppi/fluentd.vim'
+  Plugin 'cespare/vim-toml'
+  Plugin 'slim-template/vim-slim.git'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'mxw/vim-jsx'
+
 call vundle#end()            " required
+
+" Enable jsx highlighting on regular js files
+let g:jsx_ext_required = 0
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_jsxenabled_makers = ['standard']
 " Always show sign column
 augroup setup_linter
   autocmd!
@@ -48,11 +63,27 @@ set expandtab
 
 colorscheme blackboard
 
+" Relative numbering
+set relativenumber 
+set number          
+
 " Tab buffer switching
 nmap <Tab> :bn<cr>
 nmap <S-Tab> :bp<cr>
 
-nmap <leader>w :BD<cr>
+" Insert new lines above or below the cursor 
+nnoremap <silent> √ :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" Move lines up and down
+nnoremap <silent> ¬ :m .+1<CR>==
+nnoremap <silent> º :m .-2<CR>==
+
+" Mini buff on top 
+let g:miniBufExplBRSplit = 0
+
+" Alt + w to close the buffer
+nmap Ω :BD<cr>
 
 " Run deoplete
 let g:deoplete#enable_at_startup = 1
@@ -115,3 +146,20 @@ nmap <F10> :NERDTreeFind<cr>
 
 " Leader F for search
 map <leader>f :Ggrep 
+
+" Plugin key-mappings.
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+xmap <C-e> <Plug>(neosnippet_expand_target)
+
+" Refresh syntax with alt + L
+nmap <silent> ﬁ :syntax on<cr>
+
+" Alt+c copies the word in the clipboard
+nmap ç yiw
+
+" C-x deletes the current line (like in sublime)
+nmap <C-x> dd
+
+" leader-c changes current word
+" nmap <leader>c ciw
