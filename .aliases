@@ -11,3 +11,7 @@ alias vim=nvim
 alias deploy='git push heroku master'
 
 alias pi='cd ~/Projects/ios-app'
+
+alias va='cd ~/Projects/auktion && vim'
+alias vf='cd ~/Projects/fineart && vim'
+alias vi='cd ~/Projects/ios-app && vim'
