@@ -2,6 +2,13 @@ let mapleader = "\<Space>"
 set clipboard=unnamed
 language en_US
 
+augroup ft_rb
+  au!
+  " fix the SLOOOW syntax highlighting
+  " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
+  au FileType ruby setlocal re=1 foldmethod=manual
+augroup END
+
 filetype off                  " required
 set number                      " Display line numbers beside buffer
 set hidden                      " Allow buffer change w/o saving
@@ -30,6 +37,7 @@ call vundle#begin()
   Plugin 'Shougo/deoplete.nvim'
   Plugin 'Shougo/neosnippet.vim'
   Plugin 'Shougo/neosnippet-snippets'
+  Plugin 'Townk/vim-autoclose'
 
   " Syntax
   Plugin 'yoppi/fluentd.vim'
@@ -42,6 +50,9 @@ call vundle#end()            " required
 
 " Enable jsx highlighting on regular js files
 let g:jsx_ext_required = 0
+
+" Set the column limit
+set colorcolumn=100
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
@@ -128,6 +139,10 @@ nmap <leader>x :ccl<cr>
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
+
+" https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 
 " Sane defaults for searching
 set ignorecase
