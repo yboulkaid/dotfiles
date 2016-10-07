@@ -25,7 +25,6 @@ call vundle#begin()
   Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim'
   Plugin 'tpope/vim-fugitive'
-  Plugin 'fholgado/minibufexpl.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'neomake/neomake'
   Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -37,8 +36,11 @@ call vundle#begin()
   Plugin 'Shougo/deoplete.nvim'
   Plugin 'Shougo/neosnippet.vim'
   Plugin 'Shougo/neosnippet-snippets'
+  Plugin 'tpope/vim-surround'
+  Plugin 'vim-scripts/ReplaceWithRegister'
   Plugin 'Townk/vim-autoclose'
-
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   " Syntax
   Plugin 'yoppi/fluentd.vim'
   Plugin 'cespare/vim-toml'
@@ -53,6 +55,10 @@ let g:jsx_ext_required = 0
 
 " Set the column limit
 set colorcolumn=100
+
+" Auto reload files
+set autoread
+au CursorHold,CursorHoldI * checktime
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
@@ -75,14 +81,14 @@ set expandtab
 colorscheme blackboard
 
 " Relative numbering
-set relativenumber 
-set number          
+set relativenumber
+set number
 
 " Tab buffer switching
 nmap <Tab> :bn<cr>
 nmap <S-Tab> :bp<cr>
 
-" Insert new lines above or below the cursor 
+" Insert new lines above or below the cursor
 nnoremap <silent> √ :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
@@ -90,8 +96,22 @@ nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <silent> ¬ :m .+1<CR>==
 nnoremap <silent> º :m .-2<CR>==
 
-" Mini buff on top 
-let g:miniBufExplBRSplit = 0
+" Mini buff on top
+" let g:miniBufExplBRSplit = 0
+
+" Airline config
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+
+let g:airline_section_y = ''
+let g:airline_section_z = '%l'
+
+" Enable top buffer list line
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Alt + w to close the buffer
 nmap Ω :BD<cr>
@@ -101,6 +121,7 @@ let g:deoplete#enable_at_startup = 1
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 
 " Run ruby matchit
 runtime macros/matchit.vim
@@ -140,6 +161,12 @@ nmap <leader>x :ccl<cr>
 nmap j gj
 nmap k gk
 
+" Faster movement (https://news.ycombinator.com/item?id=12643887)
+nnoremap J 7j
+nnoremap K 7k
+vnoremap J 7j
+vnoremap K 7k
+
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
@@ -160,7 +187,7 @@ map <leader>k :NERDTreeToggle<cr>
 nmap <F10> :NERDTreeFind<cr>
 
 " Leader F for search
-map <leader>f :Ggrep 
+map <leader>f :Ggrep
 
 " Plugin key-mappings.
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
