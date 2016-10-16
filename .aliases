@@ -8,6 +8,7 @@ alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
 alias o='cd ~/YoussefProjects/o-market'
 alias b='cd ~/YoussefProjects/biougrita'
 alias vim=nvim
+alias tmux='TERM=xterm-256color tmux'
 alias deploy='git push heroku master'
 
 alias pi='cd ~/Projects/ios-app'
