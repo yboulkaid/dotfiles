@@ -19,36 +19,45 @@ set noswapfile " Remove temporary swap file
 set shortmess+=I " No intro when starting Vim
 set cursorline " Highligt the cursor line
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  Plugin 'VundleVim/Vundle.vim'
-  Plugin 'junegunn/fzf'
-  Plugin 'junegunn/fzf.vim'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'neomake/neomake'
-  Plugin 'MarcWeber/vim-addon-mw-utils'
-  Plugin 'tomtom/tlib_vim'
-  Plugin 'garbas/vim-snipmate'
-  Plugin 'honza/vim-snippets'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'qpkorr/vim-bufkill'
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'Shougo/neosnippet.vim'
-  Plugin 'Shougo/neosnippet-snippets'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/ReplaceWithRegister'
-  Plugin 'Townk/vim-autoclose'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-  " Syntax
-  Plugin 'yoppi/fluentd.vim'
-  Plugin 'cespare/vim-toml'
-  Plugin 'slim-template/vim-slim.git'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'mxw/vim-jsx'
+call plug#begin('~/.vim/plugged')
+  Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'scrooloose/nerdtree'
+  Plug 'neomake/neomake'
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'tomtom/tlib_vim'
+  Plug 'garbas/vim-snipmate'
+  Plug 'honza/vim-snippets'
+  Plug 'tpope/vim-commentary'
+  Plug 'qpkorr/vim-bufkill'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-scripts/ReplaceWithRegister'
+  Plug 'Townk/vim-autoclose'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'tpope/vim-dispatch'
+  Plug 'romainl/vim-qf'
+  Plug 'mileszs/ack.vim'
 
-call vundle#end()            " required
+  " Text objects
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'kana/vim-textobj-line'
+
+  " Syntax
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'yoppi/fluentd.vim'
+  Plug 'cespare/vim-toml'
+  Plug 'slim-template/vim-slim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+call plug#end()
 
 " Enable jsx highlighting on regular js files
 let g:jsx_ext_required = 0
@@ -64,7 +73,7 @@ autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
 let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_jsxenabled_makers = ['standard']
+let g:neomake_jsx_enabled_makers = ['standard']
 " Always show sign column
 augroup setup_linter
   autocmd!
@@ -102,7 +111,6 @@ nnoremap <silent> º :m .-2<CR>==
 " Airline config
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
 
 let g:airline_section_y = ''
 let g:airline_section_z = '%l'
@@ -126,19 +134,28 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 " Run ruby matchit
 runtime macros/matchit.vim
 
+" Use spring to set up vim rspec
+let g:rspec_command = "Dispatch bin/rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>r :call RunLastSpec()<CR>
+
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
 
+" redraw the screen with alt-L
+nmap ﬁ :redraw!
+
 " Remove trailing whitespace
-autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
 
-" Comment shortcut
-nmap <C-c> <plug>NERDCommenterToggle
-let g:NERDSpaceDelims = 1
+" Comment a line shortcut
+nmap <C-c> gcil
 
+" Ctrl-P for Fzf
 nmap <silent> <C-p> :GFiles<cr>
 
 " Easier window switching
@@ -152,10 +169,16 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-autocmd QuickFixCmdPost *grep* cwindow
-nmap ö :cn<cr>
-nmap ä :cp<cr>
-nmap <leader>x :ccl<cr>
+" Quickfix window
+nmap <leader>x <Plug>QfCtoggle
+nmap ö <Plug>QfCnext
+nmap ä <Plug>QfCprevious
+
+" Navigate between ruby methods with leader-m/n
+map <leader>M [m
+map <leader>N [M
+map <leader>m ]m
+map <leader>n ]M
 
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
@@ -183,11 +206,15 @@ nmap <leader>vr :tabedit $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 
 " Open explorer
-map <leader>k :NERDTreeToggle<cr>
+map <leader>l :NERDTreeToggle<cr>
 nmap <F10> :NERDTreeFind<cr>
 
 " Leader F for search
-map <leader>f :Ggrep
+map <leader>f :Ack ''<left>
+let g:ackprg = 'ag --vimgrep'
+
+" C-f for the search buffer
+nmap <C-f> q/
 
 " Plugin key-mappings.
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
