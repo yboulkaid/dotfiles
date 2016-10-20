@@ -9,7 +9,6 @@ augroup ft_rb
   au FileType ruby setlocal re=1 foldmethod=manual
 augroup END
 
-filetype off                  " required
 set number                      " Display line numbers beside buffer
 set hidden                      " Allow buffer change w/o saving
 set lazyredraw                  " Don't update while executing macros
@@ -23,32 +22,38 @@ call plug#begin('~/.vim/plugged')
   Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-fugitive'
-  Plug 'scrooloose/nerdtree'
   Plug 'neomake/neomake'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
   Plug 'garbas/vim-snipmate'
   Plug 'honza/vim-snippets'
-  Plug 'tpope/vim-commentary'
   Plug 'qpkorr/vim-bufkill'
   Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
-  Plug 'tpope/vim-surround'
-  Plug 'vim-scripts/ReplaceWithRegister'
   Plug 'Townk/vim-autoclose'
+  Plug 'mileszs/ack.vim'
+
+  " Interface
+  Plug 'romainl/vim-qf'
+  Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'thoughtbot/vim-rspec'
+
+  " Ruby dev
   Plug 'tpope/vim-dispatch'
-  Plug 'romainl/vim-qf'
-  Plug 'mileszs/ack.vim'
+  Plug 'thoughtbot/vim-rspec'
 
   " Text objects
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'kana/vim-textobj-line'
+
+  " Motions
+  Plug 'easymotion/vim-easymotion'
+  Plug 'vim-scripts/ReplaceWithRegister'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
 
   " Syntax
   Plug 'kchmck/vim-coffee-script'
@@ -206,7 +211,7 @@ nmap <leader>vr :tabedit $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 
 " Open explorer
-map <leader>l :NERDTreeToggle<cr>
+map <leader>, :NERDTreeToggle<cr>
 nmap <F10> :NERDTreeFind<cr>
 
 " Leader F for search
