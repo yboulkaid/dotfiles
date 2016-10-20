@@ -74,6 +74,9 @@ set colorcolumn=100
 set autoread
 au CursorHold,CursorHoldI * checktime
 
+" Don't use ! as a word delimiter
+:set iskeyword+=!
+
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
