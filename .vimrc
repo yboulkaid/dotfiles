@@ -198,6 +198,12 @@ nnoremap K 7k
 vnoremap J 7j
 vnoremap K 7k
 
+" Exit normal mode without leaving the home row
+inoremap kj <Esc>
+inoremap jk <Esc>
+inoremap jj <Esc>
+
+
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
