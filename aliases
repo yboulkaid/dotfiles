@@ -5,9 +5,8 @@ alias ss='sublime .'
 alias fs='forego start'
 alias log='tail -f log/development.log'
 alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
-alias o='cd ~/YoussefProjects/o-market'
-alias b='cd ~/YoussefProjects/biougrita'
 alias vim=nvim
+alias v=nvim
 alias tmux='TERM=xterm-256color tmux'
 alias deploy='git push heroku master'
 
@@ -16,3 +15,8 @@ alias pi='cd ~/Projects/ios-app'
 alias va='cd ~/Projects/auktion && vim'
 alias vf='cd ~/Projects/fineart && vim'
 alias vi='cd ~/Projects/ios-app && vim'
+
+alias o='cd ~/YoussefProjects/o-market'
+alias b='cd ~/YoussefProjects/biougrita'
+alias dot='cd ~/dotfiles'
+alias dl='cd ~/Downloads'

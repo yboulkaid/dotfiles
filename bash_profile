@@ -3,8 +3,8 @@ export EDITOR=vim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-. ~/dotfiles/.fancy_git_prompt
-. ~/dotfiles/.aliases 
+. ~/dotfiles/fancy_git_prompt
+. ~/dotfiles/aliases 
 
 ### BIOSPHERE MANAGED START ###
 

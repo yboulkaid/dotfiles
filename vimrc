@@ -134,6 +134,7 @@ nmap Ω :BD<cr>
 
 " Run deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_list = 3
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"

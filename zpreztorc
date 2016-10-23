@@ -28,11 +28,13 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'git' \
+  'ruby' \
   'history' \
   'directory' \
   'spectrum' \
   'completion' \
   'syntax-highlighting' \
+  'history-substring-search' \
   'prompt'
 
 #
