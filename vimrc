@@ -41,6 +41,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
 
   " Ruby dev
+  Plug 'tpope/vim-rails'
   Plug 'tpope/vim-dispatch'
   Plug 'thoughtbot/vim-rspec'
 
@@ -75,13 +76,23 @@ set autoread
 au CursorHold,CursorHoldI * checktime
 
 " Don't use ! as a word delimiter
-:set iskeyword+=!
+set iskeyword+=!
+set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
+let g:neomake_scss_scsslint_maker = {
+      \ 'exe': 'scss-lint',
+      \ 'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/scss-lint.yml"],
+      \ 'errorformat': '%A%f:%l:%v [%t] %m'
+      \ }
+
 let g:neomake_javascript_enabled_makers = ['standard']
 let g:neomake_jsx_enabled_makers = ['standard']
+let g:neomake_scss_enabled_makers = ['scsslint']
+let g:neomake_coffee_enabled_makers = ['coffeelint']
+
 " Always show sign column
 augroup setup_linter
   autocmd!
@@ -215,7 +226,7 @@ set smartcase
 set gdefault
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger
-nmap <leader>vr :tabedit $MYVIMRC<cr>
+nmap <leader>vr :e $MYVIMRC<cr>
 
 " Source (reload) your vimrc. Type space, s, o in sequence to trigger
 nmap <leader>so :source $MYVIMRC<cr>
