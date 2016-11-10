@@ -15,6 +15,8 @@ set lazyredraw                  " Don't update while executing macros
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set noswapfile " Remove temporary swap file
 
+set title
+
 set shortmess+=I " No intro when starting Vim
 set cursorline " Highligt the cursor line
 
@@ -82,6 +84,11 @@ set iskeyword+=?
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
+let g:neomake_slim_slimlint_maker = {
+      \ 'exe': 'slim-lint',
+      \ 'args': ['--no-color', "--config", "/Users/youssef.boulkaid/Projects/style-guide/slim-lint.yml"],
+      \ 'errorformat': '%f:%l [%t] %m'
+      \ }
 let g:neomake_scss_scsslint_maker = {
       \ 'exe': 'scss-lint',
       \ 'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/scss-lint.yml"],
@@ -92,6 +99,7 @@ let g:neomake_javascript_enabled_makers = ['standard']
 let g:neomake_jsx_enabled_makers = ['standard']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_coffee_enabled_makers = ['coffeelint']
+let g:neomake_slim_enabled_makers = ['slimlint']
 
 " Always show sign column
 augroup setup_linter
@@ -258,3 +266,14 @@ nmap <C-x> dd
 
 " leader-c changes current word
 " nmap <leader>c ciw
+
+" Easier switching from terminal window
+" https://neovim.io/doc/user/nvim_terminal_emulator.html
+:tnoremap <C-h> <C-\><C-n><C-w>h
+:tnoremap <C-j> <C-\><C-n><C-w>j
+:tnoremap <C-k> <C-\><C-n><C-w>k
+:tnoremap <C-l> <C-\><C-n><C-w>l
+" :tnoremap : <C-\><C-n>:
+
+" Auto enter insert mode in terminal
+autocmd BufWinEnter,WinEnter term://* startinsert
