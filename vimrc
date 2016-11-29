@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neosnippet-snippets'
   Plug 'Townk/vim-autoclose'
   Plug 'mileszs/ack.vim'
+  Plug 'tpope/vim-unimpaired'
 
   " Interface
   Plug 'romainl/vim-qf'
@@ -128,12 +129,15 @@ nmap <S-Tab> :bp<cr>
 nnoremap <silent> √ :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
-" Move lines up and down
-nnoremap <silent> ¬ :m .+1<CR>==
-nnoremap <silent> º :m .-2<CR>==
+" Bubble lines : http://vimcasts.org/episodes/bubbling-text/
+nmap º [e
+nmap ¬ ]e
 
-" Mini buff on top
-" let g:miniBufExplBRSplit = 0
+vmap º [egv
+vmap ¬ ]egv
+
+" Show the command while typing it
+set showcmd
 
 " Airline config
 let g:airline_theme='bubblegum'
@@ -171,6 +175,9 @@ map <Leader>r :call RunLastSpec()<CR>
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
 
+" V split
+nmap <Leader>vs :vsplit<cr>
+
 " redraw the screen with alt-L
 nmap ﬁ :redraw!
 
@@ -199,14 +206,22 @@ set splitright
 
 " Quickfix window
 nmap <leader>x <Plug>QfCtoggle
-nmap ö <Plug>QfCnext
-nmap ä <Plug>QfCprevious
+" nmap [ <Plug>QfCnext
+" nmap ] <Plug>QfCprevious
+
+" Remap öä to []
+nmap ö [
+nmap ä ]
+omap ö [
+omap ä ]
+xmap ö [
+xmap ä ]
 
 " Navigate between ruby methods with leader-m/n
-map <leader>M [m
-map <leader>N [M
-map <leader>m ]m
-map <leader>n ]M
+" map <leader>M [m
+" map <leader>N [M
+" map <leader>m ]m
+" map <leader>n ]M
 
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
@@ -236,12 +251,18 @@ set gdefault
 " Split edit your vimrc. Type space, v, r in sequence to trigger
 nmap <leader>vr :e $MYVIMRC<cr>
 
-" Source (reload) your vimrc. Type space, s, o in sequence to trigger
-nmap <leader>so :source $MYVIMRC<cr>
+" Auto source vimrc on save
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
 " Open explorer
 map <leader>, :NERDTreeToggle<cr>
 nmap <F10> :NERDTreeFind<cr>
+
+" Close vim when only nerdtree is left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Leader F for search
 map <leader>f :Ack ''<left>
@@ -273,7 +294,7 @@ nmap <C-x> dd
 :tnoremap <C-j> <C-\><C-n><C-w>j
 :tnoremap <C-k> <C-\><C-n><C-w>k
 :tnoremap <C-l> <C-\><C-n><C-w>l
-" :tnoremap : <C-\><C-n>:
+:tnoremap <C-z> <C-\><C-n><esc>
 
 " Auto enter insert mode in terminal
 autocmd BufWinEnter,WinEnter term://* startinsert
