@@ -1,15 +1,20 @@
 alias ll="ls -la"       # List in long format, include dotfiles
 alias ..="cd .."
-alias s='sublime'
-alias ss='sublime .'
+
 alias fs='foreman start'
 alias log='tail -f log/development.log'
 alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
+
+alias s='sublime'
+alias ss='sublime .'
 alias vim=nvim
 alias v=nvim
 alias b=bundle
 alias tmux='TERM=xterm-256color tmux'
 alias deploy='git push heroku master'
+
+# alias python=python3
+# alias py=ptpython
 
 alias pi='cd ~/Projects/ios-app'
 alias po='cd ~/YoussefProjects/o-market'
@@ -21,3 +26,4 @@ alias vi='cd ~/Projects/ios-app && vim'
 
 alias dot='cd ~/dotfiles'
 alias dl='cd ~/Downloads'
+alias yp='cd ~/YoussefProjects'

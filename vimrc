@@ -172,6 +172,9 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>r :call RunLastSpec()<CR>
 
+" Build python file
+map <leader>b :NeomakeSh python %<CR>
+
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
 

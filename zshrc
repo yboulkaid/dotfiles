@@ -10,3 +10,7 @@ source ~/dotfiles/aliases
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# Use pyenv to manage python versions
+eval "$(pyenv init -)"
+

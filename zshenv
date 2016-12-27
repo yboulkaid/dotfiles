@@ -16,7 +16,7 @@ fi
 export PATH="/Users/youssef.boulkaid/.biosphere/core/bin:$PATH"
 
 # Loading Biosphere's bash_profile for easier de-/activation of spheres.
-[[ -s /Users/youssef.boulkaid/.biosphere/augmentations/zshenv ]] && source /Users/youssef.boulkaid/.biosphere/augmentations/zshenv
+[[ -s /Users/youssef.boulkaid/.biosphere/augmentations/bash_profile ]] && source /Users/youssef.boulkaid/.biosphere/augmentations/bash_profile
 
 
 ### BIOSPHERE MANAGED STOP ###
