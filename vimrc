@@ -66,6 +66,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
+  Plug 'cakebaker/scss-syntax.vim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
