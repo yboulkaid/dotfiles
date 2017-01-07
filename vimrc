@@ -174,7 +174,8 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 runtime macros/matchit.vim
 
 " Use spring to set up vim rspec
-let g:rspec_command = "Dispatch bin/rspec {spec}"
+" let g:rspec_command = "Dispatch bin/rspec {spec}"
+let g:rspec_command = "call VtrSendCommand('bin/rspec {spec}')"
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>r :call RunLastSpec()<CR>
