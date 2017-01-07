@@ -6,10 +6,11 @@ augroup ft_rb
   au!
   " fix the SLOOOW syntax highlighting
   " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-  au FileType ruby setlocal re=1 foldmethod=manual
+  au FileType ruby setlocal re=1 foldmethod=manual synmaxcol=128
 augroup END
 
-set number                      " Display line numbers beside buffer
+autocmd VimResized * :wincmd =
+
 set hidden                      " Allow buffer change w/o saving
 set lazyredraw                  " Don't update while executing macros
 set scrolloff=4                 " Keep at least 4 lines below cursor
@@ -43,6 +44,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
+  " Tmux magic
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'christoomey/vim-tmux-runner'
+
   " Ruby dev
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-dispatch'
@@ -67,6 +72,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'cakebaker/scss-syntax.vim'
+  Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -94,7 +100,7 @@ let g:neomake_slim_slimlint_maker = {
 let g:neomake_scss_scsslint_maker = {
       \ 'exe': 'scss-lint',
       \ 'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/scss-lint.yml"],
-      \ 'errorformat': '%A%f:%l:%v [%t] %m'
+      \ 'errorformat': '%A%f:%l [%t] %m'
       \ }
 
 let g:neomake_javascript_enabled_makers = ['standard']
@@ -196,12 +202,6 @@ nmap <C-c> gcil
 
 " Ctrl-P for Fzf
 nmap <silent> <C-p> :GFiles<cr>
-
-" Easier window switching
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " More natural splits
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
