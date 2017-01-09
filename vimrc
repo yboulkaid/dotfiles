@@ -180,6 +180,9 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>r :call RunLastSpec()<CR>
 
+map <Leader>vtr :VtrOpenRunner<cr>
+map <Leader>kvtr :VtrKillRunner<cr>
+
 " Build python file
 map <leader>b :NeomakeSh python %<CR>
 
