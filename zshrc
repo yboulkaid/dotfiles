@@ -14,3 +14,6 @@ fi
 # Use pyenv to manage python versions
 eval "$(pyenv init -)"
 
+# Source fzf for fuzzy finding
+export FZF_TMUX_HEIGHT=10
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
