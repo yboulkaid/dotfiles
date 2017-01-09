@@ -2,7 +2,7 @@
 	name = Youssef Boulkaid
 	email = youssef.boulkaid@bukowskis.com
 [push]
-	default = matching
+	default = current
 [alias]
 	co = checkout
 	st = s
