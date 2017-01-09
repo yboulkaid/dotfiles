@@ -195,9 +195,7 @@ endfunction
 
 map <Leader>vtr :VtrOpenRunner<cr>
 map <Leader>kvtr :VtrKillRunner<cr>
-
-" Build python file
-map <leader>b :NeomakeSh python %<CR>
+map <leader>b :VtrSendLinesToRunner<cr>
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
