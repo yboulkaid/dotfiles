@@ -50,7 +50,6 @@ call plug#begin('~/.vim/plugged')
 
   " Ruby dev
   Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-dispatch'
   Plug 'thoughtbot/vim-rspec'
 
   " Text objects
@@ -173,12 +172,26 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 " Run ruby matchit
 runtime macros/matchit.vim
 
-" Use spring to set up vim rspec
-" let g:rspec_command = "Dispatch bin/rspec {spec}"
-let g:rspec_command = "call VtrSendCommand('bin/rspec {spec}')"
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>r :call RunLastSpec()<CR>
+" Setup VTR and vim-rspec
+augroup setup_vtr
+  au!
+  autocmd Filetype ruby call VtrForRuby()
+  autocmd Filetype python call VtrForPython()
+augroup END
+
+function! VtrForRuby()
+  let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
+  map <Leader>t :call RunCurrentSpecFile()<CR>
+  map <Leader>s :call RunNearestSpec()<CR>
+  map <Leader>r :call RunLastSpec()<CR>
+endfunction
+
+function! VtrForPython()
+  map <Leader>t :VtrSendFile!<CR>
+  let g:VtrStripLeadingWhitespace = 0
+  let g:VtrClearEmptyLines = 0
+  let g:VtrAppendNewline = 1
+endfunction
 
 map <Leader>vtr :VtrOpenRunner<cr>
 map <Leader>kvtr :VtrKillRunner<cr>
