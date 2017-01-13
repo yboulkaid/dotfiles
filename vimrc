@@ -196,6 +196,7 @@ endfunction
 map <Leader>vtr :VtrOpenRunner<cr>
 map <Leader>kvtr :VtrKillRunner<cr>
 map <leader>b :VtrSendLinesToRunner<cr>
+map <leader>B :VtrSendFile!<cr>
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
@@ -216,7 +217,9 @@ nmap <F12> :tag <C-R><C-W> <cr>
 nmap <C-c> gcil
 
 " Ctrl-P for Fzf
-nmap <silent> <C-p> :GFiles<cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+nmap <silent> <C-p> :Files<cr>
+nmap <silent> <leader>p :Buffers<cr>
 
 " More natural splits
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
@@ -284,7 +287,7 @@ nmap <F10> :NERDTreeFind<cr>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Leader F for search
-map <leader>f :Ack ''<left>
+map <leader>f :Ag<cr>
 let g:ackprg = 'ag --vimgrep'
 
 " C-f for the search buffer
