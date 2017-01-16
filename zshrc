@@ -17,3 +17,11 @@ eval "$(pyenv init -)"
 # Source fzf for fuzzy finding
 export FZF_TMUX_HEIGHT=10
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fuzzy find project and open vim
+pp() {
+  local dir
+  dir=$(ls -d ~/Projects/* | xargs basename | fzf ) &&
+  cd "/Users/youssef.boulkaid/Projects/$dir" &&
+  nvim +Files
+}
