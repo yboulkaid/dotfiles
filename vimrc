@@ -6,7 +6,7 @@ augroup ft_rb
   au!
   " fix the SLOOOW syntax highlighting
   " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-  au FileType ruby setlocal re=1 foldmethod=manual synmaxcol=128
+  au FileType ruby setlocal re=1 foldmethod=manual
 augroup END
 
 autocmd VimResized * :wincmd =
@@ -217,7 +217,7 @@ nmap <F12> :tag <C-R><C-W> <cr>
 nmap <C-c> gcil
 
 " Ctrl-P for Fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 
@@ -282,6 +282,9 @@ augroup END
 " Open explorer
 map <leader>, :NERDTreeToggle<cr>
 nmap <F10> :NERDTreeFind<cr>
+
+" Show hidden files in nerdtree
+let NERDTreeShowHidden=1
 
 " Close vim when only nerdtree is left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
