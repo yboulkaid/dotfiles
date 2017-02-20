@@ -202,7 +202,8 @@ map <leader>B :VtrSendFile!<cr>
 nnoremap <silent> <leader>l :noh<CR>
 
 " V split
-nmap <Leader>vs :vsplit<cr>
+nmap <Leader>. :vsplit<cr>
+nmap <Leader>- :split<cr>
 
 " redraw the screen with alt-L
 nmap ﬁ :redraw!

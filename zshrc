@@ -16,6 +16,7 @@ eval "$(pyenv init -)"
 
 # Source fzf for fuzzy finding
 export FZF_TMUX_HEIGHT=10
+export FZF_CTRL_R_OPTS=--sort
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fuzzy find project and open vim
