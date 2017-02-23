@@ -23,6 +23,5 @@ export FZF_CTRL_R_OPTS=--sort
 pp() {
   local dir
   dir=$(ls -d ~/Projects/* | xargs basename | fzf ) &&
-  cd "/Users/youssef.boulkaid/Projects/$dir" &&
-  nvim +Files
+  cd "/Users/youssef.boulkaid/Projects/$dir"
 }

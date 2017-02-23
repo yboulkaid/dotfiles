@@ -2,6 +2,7 @@ alias ll="ls -la"       # List in long format, include dotfiles
 alias ..="cd .."
 
 alias fs='foreman start'
+alias dcu='docker-compose up'
 alias log='tail -f log/development.log'
 alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
 
