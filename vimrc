@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Townk/vim-autoclose'
   Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-repeat'
 
   " Interface
   Plug 'romainl/vim-qf'
@@ -72,6 +73,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'vim-ruby/vim-ruby'
+  Plug 'robbles/logstash.vim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -160,6 +162,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Alt + w to close the buffer
 nmap Ω :BD<cr>
+nmap Q :q<cr>
 
 " Run deoplete
 let g:deoplete#enable_at_startup = 1
