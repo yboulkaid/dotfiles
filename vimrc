@@ -28,16 +28,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'neomake/neomake'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
-  Plug 'garbas/vim-snipmate'
-  Plug 'honza/vim-snippets'
   Plug 'qpkorr/vim-bufkill'
   Plug 'Shougo/deoplete.nvim'
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
   Plug 'Townk/vim-autoclose'
   Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
+  Plug 'Chiel92/vim-autoformat'
+
+  " Snippets
+  Plug 'garbas/vim-snipmate'
+  Plug 'honza/vim-snippets'
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
 
   " Interface
   Plug 'romainl/vim-qf'
@@ -137,6 +140,9 @@ nmap <S-Tab> :bp<cr>
 nnoremap <silent> √ :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
+" Paste on newlines with å
+:nmap å :pu<CR>==
+
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
 nmap º [e
 nmap ¬ ]e
@@ -161,12 +167,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Alt + w to close the buffer
-nmap Ω :BD<cr>
+nmap Ω :BD!<cr>
 nmap Q :q<cr>
 
 " Run deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 3
+let g:deoplete#max_list = 10
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -305,6 +311,9 @@ imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
 xmap <C-e> <Plug>(neosnippet_expand_target)
 
+" Snippets config
+let g:neosnippet#enable_snipmate_compatibility = 1
+
 " Refresh syntax with alt + L
 nmap <silent> ﬁ :syntax on<cr>
 
@@ -313,6 +322,10 @@ nmap ç yiw
 
 " C-x deletes the current line (like in sublime)
 nmap <C-x> dd
+
+" ga to autoformat
+nmap ga :Autoformat<cr>
+vmap ga :Autoformat<cr>
 
 " leader-c changes current word
 " nmap <leader>c ciw
