@@ -24,7 +24,8 @@ set cursorline " Highligt the cursor line
 call plug#begin('~/.vim/plugged')
   Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-fugitive'
+  " https://github.com/tpope/vim-fugitive/issues/894
+  Plug 'tpope/vim-fugitive', { 'commit': '444ba9fda5d05aa14c7e8664fa4a66a59c62a550' }
   Plug 'neomake/neomake'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
@@ -94,6 +95,7 @@ set iskeyword+=!
 set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
+autocmd filetype crontab setlocal nobackup nowritebackup
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
 let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
 let g:neomake_slim_slimlint_maker = {
@@ -190,6 +192,7 @@ augroup END
 
 function! VtrForRuby()
   let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
+  " let g:rspec_command = "VtrSendCommand! be rspec {spec}"
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
   map <Leader>r :call RunLastSpec()<CR>
