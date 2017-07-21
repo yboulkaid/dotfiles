@@ -176,7 +176,8 @@ nmap Ω :BD!<cr>
 nmap Q :q<cr>
 
 " Run deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
+autocmd InsertEnter * call deoplete#enable()
 let g:deoplete#max_list = 10
 
 " deoplete tab-complete
