@@ -36,6 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'Chiel92/vim-autoformat'
+  Plug 'machakann/vim-swap'
 
   " Snippets
   Plug 'garbas/vim-snipmate'
@@ -48,6 +49,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'ap/vim-css-color'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -268,10 +271,8 @@ nnoremap K 7k
 vnoremap J 7j
 vnoremap K 7k
 
-" Exit normal mode without leaving the home row
-inoremap kj <Esc>
-inoremap jk <Esc>
-inoremap jj <Esc>
+" Alt-S to save
+nmap ß :w<cr>
 
 
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -330,16 +331,8 @@ nmap <C-x> dd
 nmap ga :Autoformat<cr>
 vmap ga :Autoformat<cr>
 
-" leader-c changes current word
-" nmap <leader>c ciw
+" Live preview splitting in neovim
+set icm=nosplit
 
-" Easier switching from terminal window
-" https://neovim.io/doc/user/nvim_terminal_emulator.html
-:tnoremap <C-h> <C-\><C-n><C-w>h
-:tnoremap <C-j> <C-\><C-n><C-w>j
-:tnoremap <C-k> <C-\><C-n><C-w>k
-:tnoremap <C-l> <C-\><C-n><C-w>l
-:tnoremap <C-z> <C-\><C-n><esc>
-
-" Auto enter insert mode in terminal
-autocmd BufWinEnter,WinEnter term://* startinsert
+" Enable mouse support
+set mouse=a
