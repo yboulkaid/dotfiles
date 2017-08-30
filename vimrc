@@ -45,12 +45,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neosnippet-snippets'
 
   " Interface
-  Plug 'romainl/vim-qf'
+  " Plug 'romainl/vim-qf'
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'terryma/vim-multiple-cursors'
   Plug 'ap/vim-css-color'
+  Plug 'wesQ3/vim-windowswap'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-line'
 
   " Motions
-  Plug 'easymotion/vim-easymotion'
+  " Plug 'easymotion/vim-easymotion'
   Plug 'vim-scripts/ReplaceWithRegister'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
@@ -225,7 +225,7 @@ nmap <Leader>- :split<cr>
 nmap ﬁ :redraw!
 
 " Remove trailing whitespace
-autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
