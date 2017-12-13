@@ -14,6 +14,8 @@ alias b=bundle
 alias tmux='TERM=xterm-256color tmux'
 alias deploy='git push heroku master'
 alias ctags="`brew --prefix`/bin/ctags"
+alias dc='docker-compose'
+alias rake='noglob rake'
 
 # alias python=python3
 # alias py=ptpython
