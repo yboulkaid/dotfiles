@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'Chiel92/vim-autoformat'
   Plug 'machakann/vim-swap'
+  Plug 'godlygeek/tabular'
 
   " Snippets
   Plug 'garbas/vim-snipmate'
@@ -81,6 +82,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'vim-ruby/vim-ruby'
   Plug 'robbles/logstash.vim'
+  Plug 'chr4/nginx.vim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -111,9 +113,14 @@ let g:neomake_scss_scsslint_maker = {
       \ 'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/scss-lint.yml"],
       \ 'errorformat': '%A%f:%l [%t] %m'
       \ }
+let g:neomake_javascript_eslint_maker = {
+    \ 'exe': 'eslint',
+    \ 'args': ['--no-color','--format', 'compact', '-c', '/Users/youssef.boulkaid/Projects/style-guide/.eslintrc'],
+    \ 'errorformat': '%f: line %l\, col %c\, %m'
+    \ }
 
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_jsx_enabled_makers = ['standard']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_coffee_enabled_makers = ['coffeelint']
 let g:neomake_slim_enabled_makers = ['slimlint']
@@ -132,6 +139,8 @@ set softtabstop=2
 set expandtab
 
 colorscheme blackboard
+nmap ¶ :colorscheme morning <bar> :AirlineTheme papercolor<CR>
+nmap © :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
 " Relative numbering
 set relativenumber
@@ -225,7 +234,7 @@ nmap <Leader>- :split<cr>
 nmap ﬁ :redraw!
 
 " Remove trailing whitespace
-autocmd FileType ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
