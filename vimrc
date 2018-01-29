@@ -52,6 +52,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ap/vim-css-color'
   Plug 'wesQ3/vim-windowswap'
+  Plug 'vimtaku/hl_matchit.vim'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -102,7 +103,6 @@ set iskeyword+=?
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
 let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
-let g:neomake_ruby_reek_maker = {'args' : ["-c", "/Users/youssef.boulkaid/Projects/style-guide/config.reek"]}
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
       \ 'args': ['--no-color', "--config", "/Users/youssef.boulkaid/Projects/style-guide/slim-lint.yml"],
@@ -124,6 +124,7 @@ let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_coffee_enabled_makers = ['coffeelint']
 let g:neomake_slim_enabled_makers = ['slimlint']
+let g:neomake_ruby_enabled_makers = ['rubocop']
 
 " Always show sign column
 augroup setup_linter
@@ -195,6 +196,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 
 " Run ruby matchit
 runtime macros/matchit.vim
+let g:hl_matchit_enable_on_vim_startup = 1
+let g:hl_matchit_speed_level = 1
+let g:hl_matchit_hl_groupname = 'Underlined'
 
 " Setup VTR and vim-rspec
 augroup setup_vtr
