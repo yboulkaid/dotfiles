@@ -347,3 +347,9 @@ set icm=nosplit
 
 " Enable mouse support
 set mouse=a
+
+" Github to master
+map <leader>gh :Gbrowse<cr>
+
+" Github to master
+map <leader>ghm :Gbrowse master:%<cr>
