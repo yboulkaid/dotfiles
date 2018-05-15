@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'wesQ3/vim-windowswap'
   Plug 'vimtaku/hl_matchit.vim'
+  Plug 'machakann/vim-highlightedyank'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
