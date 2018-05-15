@@ -100,6 +100,7 @@ au CursorHold,CursorHoldI * checktime
 " Don't use ! as a word delimiter
 set iskeyword+=!
 set iskeyword+=?
+au Filetype slim set iskeyword-=_
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
