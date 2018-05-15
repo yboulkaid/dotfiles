@@ -318,12 +318,13 @@ let NERDTreeShowHidden=1
 " Close vim when only nerdtree is left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Leader F for search
+" Leader F and C-f for search
 map <leader>f :Ag<cr>
+nmap <C-f> :Ag<cr>
 let g:ackprg = 'ag --vimgrep'
 
 " C-f for the search buffer
-nmap <C-f> q/
+" nmap <C-f> q/
 
 " Plugin key-mappings.
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
