@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
-  Plug 'Chiel92/vim-autoformat'
   Plug 'machakann/vim-swap'
   Plug 'godlygeek/tabular'
 
@@ -342,10 +341,6 @@ nmap ç yiw
 
 " C-x deletes the current line (like in sublime)
 nmap <C-x> dd
-
-" ga to autoformat
-nmap ga :Autoformat<cr>
-vmap ga :Autoformat<cr>
 
 " Live preview splitting in neovim
 set icm=nosplit
