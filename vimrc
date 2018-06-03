@@ -93,14 +93,10 @@ let g:jsx_ext_required = 0
 " Set the column limit
 set colorcolumn=100
 
-" Auto reload files
-set autoread
-au CursorHold,CursorHoldI * checktime
-
 " Don't use ! as a word delimiter
 set iskeyword+=!
 set iskeyword+=?
-au Filetype slim set iskeyword-=_
+" au Filetype slim set iskeyword-=_
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -146,7 +142,7 @@ nmap ¶ :colorscheme morning <bar> :AirlineTheme papercolor<CR>
 nmap © :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
 " Relative numbering
-set relativenumber
+" set relativenumber
 set number
 
 " Tab buffer switching
@@ -182,9 +178,12 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_highlighting_cache = 1
 
 " Alt + w to close the buffer
 nmap Ω :BD!<cr>
+
+" Alt + w to close the buffer and window
 nmap Q :q<cr>
 
 " Run deoplete
@@ -195,6 +194,9 @@ let g:deoplete#max_list = 10
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
+
+" Don't press escape key twice to quit insert mode https://github.com/Shougo/deoplete.nvim/issues/386
+let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
 
 " Run ruby matchit
 runtime macros/matchit.vim
