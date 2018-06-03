@@ -10,6 +10,8 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+export PATH="/Users/youssef.boulkaid/bin:$PATH"
+
 ### BIOSPHERE MANAGED START ###
 
 # Adding the "bio" executable to your path.
