@@ -21,6 +21,9 @@ set title
 set shortmess+=I " No intro when starting Vim
 set cursorline " Highligt the cursor line
 
+let g:python3_host_prog = '/Users/youssef.boulkaid/.pyenv/shims/python3'
+let g:loaded_python_provider=1
+
 call plug#begin('~/.vim/plugged')
   Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
   Plug 'junegunn/fzf.vim'

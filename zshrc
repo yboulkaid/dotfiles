@@ -11,6 +11,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Use pyenv to manage python versions
+
+export PYENV_ROOT="~/.biosphere/spheres/bukowskis/homebrew/Cellar/pyenv/1.0.4/"
 eval "$(pyenv init -)"
 
 # Source fzf for fuzzy finding
