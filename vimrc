@@ -24,8 +24,8 @@ set cursorline " Highligt the cursor line
 call plug#begin('~/.vim/plugged')
   Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
   Plug 'junegunn/fzf.vim'
-  " https://github.com/tpope/vim-fugitive/issues/894
-  Plug 'tpope/vim-fugitive', { 'commit': '444ba9fda5d05aa14c7e8664fa4a66a59c62a550' }
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
-  Plug 'machakann/vim-swap'
+  " Plug 'machakann/vim-swap'
   Plug 'godlygeek/tabular'
 
   " Snippets
@@ -75,8 +75,6 @@ call plug#begin('~/.vim/plugged')
 
   " Syntax
   Plug 'kchmck/vim-coffee-script'
-  Plug 'yoppi/fluentd.vim'
-  Plug 'cespare/vim-toml'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
