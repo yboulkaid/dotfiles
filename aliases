@@ -32,3 +32,6 @@ alias vi='cd ~/Projects/ios-app && vim'
 alias dot='cd ~/dotfiles'
 alias dl='cd ~/Downloads'
 alias yp='cd ~/YoussefProjects'
+
+alias cb='git rev-parse --abbrev-ref HEAD | tr -d "\n" | pbcopy'
+alias tags='ag -l | ctags --links=no -L-'
