@@ -38,8 +38,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
+  Plug 'junegunn/vim-easy-align'
   " Plug 'machakann/vim-swap'
-  Plug 'godlygeek/tabular'
+  " Plug 'godlygeek/tabular'
 
   " Snippets
   Plug 'garbas/vim-snipmate'
@@ -357,3 +358,6 @@ map <leader>gh :Gbrowse<cr>
 
 " Github to master
 map <leader>ghm :Gbrowse master:%<cr>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
