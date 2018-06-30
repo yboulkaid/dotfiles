@@ -26,3 +26,6 @@ pp() {
   dir=$(ls -d ~/Projects/* | xargs basename | fzf ) &&
   cd "/Users/youssef.boulkaid/Projects/$dir"
 }
+
+setopt auto_cd
+cdpath=($HOME/Projects $HOME/YoussefProjects)
