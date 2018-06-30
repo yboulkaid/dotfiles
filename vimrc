@@ -199,6 +199,17 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 " Don't press escape key twice to quit insert mode https://github.com/Shougo/deoplete.nvim/issues/386
 let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
 
+" Disable CTags source
+call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+
+" Plugin key-mappings.
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+xmap <C-e> <Plug>(neosnippet_expand_target)
+
+" Snippets config
+let g:neosnippet#enable_snipmate_compatibility = 1
+
 " Run ruby matchit
 runtime macros/matchit.vim
 let g:hl_matchit_enable_on_vim_startup = 1
@@ -326,17 +337,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <leader>f :Ag<cr>
 nmap <C-f> :Ag<cr>
 let g:ackprg = 'ag --vimgrep'
-
-" C-f for the search buffer
-" nmap <C-f> q/
-
-" Plugin key-mappings.
-imap <C-e> <Plug>(neosnippet_expand_or_jump)
-smap <C-e> <Plug>(neosnippet_expand_or_jump)
-xmap <C-e> <Plug>(neosnippet_expand_target)
-
-" Snippets config
-let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Refresh syntax with alt + L
 nmap <silent> ﬁ :syntax on<cr>
