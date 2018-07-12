@@ -119,6 +119,12 @@ let g:neomake_javascript_eslint_maker = {
     \ 'errorformat': '%f: line %l\, col %c\, %m'
     \ }
 
+let g:neomake_coffee_coffeelint_maker = {
+    \ 'exe': 'coffeelint',
+    \ 'args': ['--reporter', 'csv', '-f', '/Users/youssef.boulkaid/Projects/style-guide/coffeelint.json'],
+    \ 'errorformat': '%f\,%l\,%\d%#\,%trror\,%m,%f\,%l\,%trror\,%m,%f\,%l\,%\d%#\,%tarn\,%m,%f\,%l\,%tarn\,%m'
+    \ }
+
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['scsslint']
