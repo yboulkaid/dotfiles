@@ -86,6 +86,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby'
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
+  " Plug 'pedrohdz/vim-yaml-folds'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
