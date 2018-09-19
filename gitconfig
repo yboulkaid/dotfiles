@@ -7,3 +7,5 @@
 	co = checkout
 	st = s
 	s = status
+[core]
+	excludesfile = ~/.gitignore_global
