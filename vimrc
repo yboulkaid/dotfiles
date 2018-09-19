@@ -1,4 +1,5 @@
 let mapleader = "\<Space>"
+
 set clipboard=unnamed
 language en_US
 
@@ -102,16 +103,16 @@ set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
-let g:neomake_ruby_rubocop_maker = {'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml"]}
+let g:neomake_ruby_rubocop_maker = {'args' : ['--config', '/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml']}
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
-      \ 'args': ['--no-color', "--config", "/Users/youssef.boulkaid/Projects/style-guide/slim-lint.yml"],
+      \ 'args': ['--no-color', '--config', '/Users/youssef.boulkaid/Projects/style-guide/slim-lint.yml'],
       \ 'errorformat': '%f:%l [%t] %m'
       \ }
-let g:neomake_scss_scsslint_maker = {
-      \ 'exe': 'scss-lint',
-      \ 'args' : ["--config", "/Users/youssef.boulkaid/Projects/style-guide/scss-lint.yml"],
-      \ 'errorformat': '%A%f:%l [%t] %m'
+let g:neomake_scss_sasslint_maker = {
+      \ 'exe': 'sass-lint',
+      \ 'args': ['--no-exit', '--verbose', '--format', 'compact', '-c', '/Users/youssef.boulkaid/Projects/style-guide/sass-lint.yml'],
+      \ 'errorformat': neomake#makers#ft#javascript#eslint()['errorformat']
       \ }
 let g:neomake_javascript_eslint_maker = {
     \ 'exe': 'eslint',
@@ -127,7 +128,7 @@ let g:neomake_coffee_coffeelint_maker = {
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_scss_enabled_makers = ['scsslint']
+let g:neomake_scss_enabled_makers = ['sasslint']
 let g:neomake_coffee_enabled_makers = ['coffeelint']
 let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
@@ -292,6 +293,7 @@ omap ä ]
 xmap ö [
 xmap ä ]
 
+nmap zz za
 " Navigate between ruby methods with leader-m/n
 " map <leader>M [m
 " map <leader>N [M
