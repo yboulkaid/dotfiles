@@ -79,6 +79,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
 
   " Syntax
+  Plug 'gabrielelana/vim-markdown'
   Plug 'kchmck/vim-coffee-script'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
@@ -88,6 +89,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
   " Plug 'pedrohdz/vim-yaml-folds'
+
+  " Writing
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -370,3 +375,8 @@ map <leader>ghm :Gbrowse master:%<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
+
+" Writing mode (markdown)
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
