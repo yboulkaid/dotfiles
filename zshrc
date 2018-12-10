@@ -29,3 +29,4 @@ pp() {
 
 setopt auto_cd
 cdpath=($HOME/Projects $HOME/YoussefProjects)
+eval "$(direnv hook zsh)"
