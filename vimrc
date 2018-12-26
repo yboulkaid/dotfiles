@@ -80,7 +80,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
 
   " Syntax
-  Plug 'gabrielelana/vim-markdown'
+  " Plug 'gabrielelana/vim-markdown'
   Plug 'kchmck/vim-coffee-script'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
@@ -389,3 +389,4 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
+autocmd FileType markdown set linebreak
