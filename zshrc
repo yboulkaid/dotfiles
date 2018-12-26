@@ -28,5 +28,8 @@ pp() {
 }
 
 setopt auto_cd
-cdpath=($HOME/Projects $HOME/YoussefProjects)
 eval "$(direnv hook zsh)"
+
+# Allow [ or ] whereever you want
+# Cf. https://github.com/thoughtbot/dotfiles/pull/194
+unsetopt nomatch
