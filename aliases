@@ -1,4 +1,4 @@
-alias ll="ls -la"       # List in long format, include dotfiles
+alias ll="ls -lah"       # List in long format, include dotfiles
 alias ..="cd .."
 
 alias fs='foreman start'
