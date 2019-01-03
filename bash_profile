@@ -1,5 +1,4 @@
 export PATH=/usr/local/bin:~/bin:$PATH
-export EDITOR=vim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 

@@ -1,4 +1,5 @@
 export EDITOR=nvim
+export VISUAL=nvim
 export GIT_EDITOR=nvim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
