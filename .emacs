@@ -30,7 +30,8 @@
 
 (evil-leader/set-key
   "." 'evil-window-vsplit
-  "-" 'evil-window-split)
+  "-" 'evil-window-split
+  "vr" (lambda() (interactive)(find-file "~/.emacs")))
 
 (global-set-key "\M-j" 'evil-window-down)
 (global-set-key "\M-k" 'evil-window-up)
@@ -38,7 +39,14 @@
 (global-set-key "\M-l" 'evil-window-right)
 
 (global-set-key "Q" 'delete-window)
-(define-key evil-motion-state-map (kbd "J") (lambda () (interactive) (evil-next-line 7)))
+;; (define-key evil-motion-state-map (kbd "J") (lambda () (interactive) (evil-next-line 7)))
+
+;; Hide scrollbar and toolbar
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
+;; Always follow symlinks
+(setq vc-follow-symlinks t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
