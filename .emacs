@@ -45,6 +45,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(custom-enabled-themes (quote (blackboard)))
+ '(custom-safe-themes
+   (quote
+    ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages (quote (evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
