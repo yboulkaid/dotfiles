@@ -20,6 +20,9 @@
 (use-package evil-leader
   :ensure t)
 
+(use-package neotree
+  :ensure t)
+
 (require 'evil)
 (require 'evil-leader)
 
@@ -31,7 +34,8 @@
 (evil-leader/set-key
   "." 'evil-window-vsplit
   "-" 'evil-window-split
-  "vr" (lambda() (interactive)(find-file "~/.emacs")))
+  "vr" (lambda() (interactive)(find-file "~/.emacs"))
+  "," 'neotree-toggle)
 
 (global-set-key "\M-j" 'evil-window-down)
 (global-set-key "\M-k" 'evil-window-up)
@@ -48,6 +52,17 @@
 ;; Always follow symlinks
 (setq vc-follow-symlinks t)
 
+;; Override evi mode in neotree: https://www.emacswiki.org/emacs/NeoTree
+(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+(evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
+(evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -59,7 +74,7 @@
  '(custom-safe-themes
    (quote
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
- '(package-selected-packages (quote (evil-leader evil-visual-mark-mode))))
+ '(package-selected-packages (quote (neotree evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
