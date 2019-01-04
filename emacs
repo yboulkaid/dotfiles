@@ -14,20 +14,19 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package evil
-  :ensure t)
-
-(use-package evil-leader
-  :ensure t)
-
-(use-package neotree
-  :ensure t)
+(use-package evil :ensure t)
+(use-package evil-leader :ensure t)
+(use-package neotree :ensure t)
+(use-package projectile :ensure t)
+(use-package helm :ensure t)
 
 (require 'evil)
 (require 'evil-leader)
+(require 'helm)
 
 (global-evil-leader-mode)
 (evil-mode t)
+(helm-mode 1)
 
 (evil-leader/set-leader "<SPC>")
 
@@ -37,12 +36,29 @@
   "vr" (lambda() (interactive)(find-file "~/.emacs"))
   "," 'neotree-toggle)
 
-(global-set-key "\M-j" 'evil-window-down)
-(global-set-key "\M-k" 'evil-window-up)
-(global-set-key "\M-h" 'evil-window-left)
-(global-set-key "\M-l" 'evil-window-right)
-
+(global-set-key (kbd "s-j") 'evil-window-down)
+(global-set-key (kbd "s-k") 'evil-window-up)
+(global-set-key (kbd "s-h") 'evil-window-left)
+(global-set-key (kbd "s-l") 'evil-window-right)
+(global-set-key (kbd "s-w") 'delete-window)
 (global-set-key "Q" 'delete-window)
+
+(global-set-key (kbd "s-r") 'eval-buffer)
+
+;; Helm config
+(define-key global-map [remap find-file] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap list-buffers] 'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(define-key global-map [remap execute-extended-command] 'helm-M-x)
+(setq helm-mode-fuzzy-match t)
+(setq helm-M-x-fuzzy-match t)
+(setq helm-completion-in-region-fuzzy-match t)
+
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 ;; (define-key evil-motion-state-map (kbd "J") (lambda () (interactive) (evil-next-line 7)))
 
 ;; Hide scrollbar and toolbar
@@ -63,6 +79,9 @@
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
 
+;; Open emacs file in lisp mode
+(add-to-list 'auto-mode-alist '("emacs" . lisp-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -74,7 +93,9 @@
  '(custom-safe-themes
    (quote
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
- '(package-selected-packages (quote (neotree evil-leader evil-visual-mark-mode))))
+ '(package-selected-packages
+   (quote
+    (helm projectile neotree evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
