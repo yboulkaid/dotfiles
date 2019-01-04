@@ -16,6 +16,7 @@
 
 (use-package evil :ensure t)
 (use-package evil-leader :ensure t)
+(use-package evil-commentary :ensure t)
 (use-package neotree :ensure t)
 (use-package projectile :ensure t)
 (use-package helm :ensure t)
@@ -27,6 +28,7 @@
 (global-evil-leader-mode)
 (evil-mode t)
 (helm-mode 1)
+(evil-commentary-mode)
 
 (evil-leader/set-leader "<SPC>")
 
@@ -59,7 +61,18 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-;; (define-key evil-motion-state-map (kbd "J") (lambda () (interactive) (evil-next-line 7)))
+;; For faster scroll. Doesn't work very well
+;; TODO: Make it better?
+(defun my/fast-next-visual-line ()
+  (interactive)
+  (evil-next-visual-line 7))
+(defun my/fast-previous-visual-line ()
+  (interactive)
+  (evil-previous-visual-line 7))
+(define-key evil-normal-state-map  "J" 'my/fast-next-visual-line)
+(define-key evil-normal-state-map  "K" 'my/fast-previous-visual-line)
+(define-key evil-visual-state-map  "J" 'my/fast-next-visual-line)
+(define-key evil-visual-state-map  "K" 'my/fast-previous-visual-line)
 
 ;; Hide scrollbar and toolbar
 (scroll-bar-mode -1)
@@ -95,7 +108,7 @@
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages
    (quote
-    (helm projectile neotree evil-leader evil-visual-mark-mode))))
+    (evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
