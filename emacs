@@ -22,15 +22,21 @@
 (use-package neotree :ensure t)
 (use-package projectile :ensure t)
 (use-package helm :ensure t)
+(use-package helm-projectile :ensure t)
+(use-package which-key :ensure t)
 
 (require 'evil)
 (require 'evil-leader)
 (require 'helm)
+(require 'which-key)
 
 (global-evil-leader-mode)
 (evil-mode t)
 (helm-mode 1)
 (evil-commentary-mode)
+(which-key-mode)
+
+(setq which-key-idle-delay 0.01)
 
 (evil-leader/set-leader "<SPC>")
 
@@ -61,7 +67,6 @@
 
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; For faster scroll. Doesn't work very well
 ;; TODO: Make it better?
@@ -110,7 +115,7 @@
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages
    (quote
-    (evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
+    (helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
