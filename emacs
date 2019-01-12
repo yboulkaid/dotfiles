@@ -24,6 +24,7 @@
 (use-package helm :ensure t)
 (use-package helm-projectile :ensure t)
 (use-package which-key :ensure t)
+(use-package tabbar :ensure t)
 
 (require 'evil)
 (require 'evil-leader)
@@ -113,6 +114,54 @@
 ;; Open emacs file in lisp mode
 (add-to-list 'auto-mode-alist '("emacs" . lisp-mode))
 
+;; Tab bar
+(require 'tabbar)
+(customize-set-variable 'tabbar-separator '(0.5))
+(customize-set-variable 'tabbar-use-images nil)
+(tabbar-mode 1)
+(set-face-attribute 'tabbar-default nil
+        :background "gray20" :foreground 
+        "gray60" :distant-foreground "gray50"
+        :family "Helvetica Neue" :box nil)
+(set-face-attribute 'tabbar-unselected nil
+        :background "gray80" :foreground "black" :box nil)
+(set-face-attribute 'tabbar-modified nil
+        :foreground "red4" :box nil
+        :inherit 'tabbar-unselected)
+(set-face-attribute 'tabbar-selected nil
+        :background "#4090c0" :foreground "white" :box nil)
+(set-face-attribute 'tabbar-selected-modified nil
+        :inherit 'tabbar-selected :foreground "GoldenRod2" :box nil)
+(set-face-attribute 'tabbar-button nil
+        :box nil)
+;; Group tabs by project/directory, and hide some buffers
+;; <https://www.emacswiki.org/emacs/TabBarMode#toc15>
+(defun my/tabbar-buffer-groups ()
+  (cond ((member (buffer-name)
+                 '("*Completions*"
+                   "*scratch*"
+                   "*Messages*"
+                   "*Ediff Registry*"))
+         (list "#hide"))
+        (t (list (or (cdr (project-current))
+                     (expand-file-name default-directory))))))
+(setq tabbar-buffer-groups-function #'my/tabbar-buffer-groups)
+
+;; Keep tabs sorted <https://www.emacswiki.org/emacs/TabBarMode#toc7>
+(defun tabbar-add-tab (tabset object &optional _append_ignored)
+  "Add to TABSET a tab with value OBJECT if there isn't one there yet.
+ If the tab is added, it is added at the beginning of the tab list,
+ unless the optional argument APPEND is non-nil, in which case it is
+ added at the end."
+  (let ((tabs (tabbar-tabs tabset)))
+    (if (tabbar-get-tab object tabset)
+        tabs
+      (let ((tab (tabbar-make-tab object tabset)))
+        (tabbar-set-template tabset nil)
+        (set tabset (sort (cons tab tabs)
+                 (lambda (a b) (string< (buffer-name (car a))
+                               (buffer-name (car b))))))))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -126,7 +175,7 @@
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages
    (quote
-    (helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
+    (tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
