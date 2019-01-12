@@ -51,8 +51,9 @@
 (evil-leader/set-key
   "." 'evil-window-vsplit
   "-" 'evil-window-split
-  "t" 'ansi-term
-  "vr" (lambda() (interactive)(find-file "~/.emacs"))
+  "t"  (lambda() (evil-window-vsplit) (interactive) (term "zsh"))
+  "T"  (lambda() (evil-window-split) (interactive) (term "zsh"))
+  "vr"  (lambda() (interactive) (find-file "~/.emacs"))
   "," 'neotree-toggle)
 
 ;; Keybindings
@@ -126,6 +127,10 @@
 
 ;; Enter terminal in emacs mode
 (evil-set-initial-state 'term-mode 'emacs)
+
+(defadvice term-handle-exit
+  (after term-kill-buffer-on-exit activate)
+(kill-buffer) (delete-window))
 
 ;; Open emacs file in lisp mode
 (add-to-list 'auto-mode-alist '("emacs" . lisp-mode))
