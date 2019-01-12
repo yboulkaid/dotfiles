@@ -84,14 +84,20 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 
-;; For faster scroll. Doesn't work very well
-;; TODO: Make it better?
-(defun my/fast-next-visual-line ()
-  (interactive)
-  (evil-next-visual-line 7))
-(defun my/fast-previous-visual-line ()
-  (interactive)
-  (evil-previous-visual-line 7))
+;; For faster scroll. 
+;; TODO: Try to send the 7/-7 as an argument in key definition
+(evil-define-motion my/fast-next-visual-line (count)
+"Move the cursor COUNT screen lines down, or 5."
+:type exclusive
+  (let ((line-move-visual t))
+  (evil-line-move (or count 7))))
+
+(evil-define-motion my/fast-previous-visual-line (count)
+"Move the cursor COUNT screen lines down, or 5."
+:type exclusive
+  (let ((line-move-visual t))
+  (evil-line-move (or count -7))))
+
 (define-key evil-normal-state-map  "J" 'my/fast-next-visual-line)
 (define-key evil-normal-state-map  "K" 'my/fast-previous-visual-line)
 (define-key evil-visual-state-map  "J" 'my/fast-next-visual-line)
