@@ -31,10 +31,10 @@
 (require 'which-key)
 
 (global-evil-leader-mode)
-(evil-mode t)
 (helm-mode 1)
 (evil-commentary-mode)
 (which-key-mode)
+(evil-mode t)
 
 (setq which-key-idle-delay 0.01)
 
@@ -43,8 +43,12 @@
 (evil-leader/set-key
   "." 'evil-window-vsplit
   "-" 'evil-window-split
+  "t" 'ansi-term
   "vr" (lambda() (interactive)(find-file "~/.emacs"))
   "," 'neotree-toggle)
+
+;; Keybindings
+(setq mac-right-option-modifier 'none)
 
 (global-set-key (kbd "s-j") 'evil-window-down)
 (global-set-key (kbd "s-k") 'evil-window-up)
@@ -54,6 +58,8 @@
 (global-set-key "Q" 'delete-window)
 
 (global-set-key (kbd "s-r") 'eval-buffer)
+(global-set-key (kbd "M-s-<right>") 'next-buffer)
+(global-set-key (kbd "M-s-<left>") 'previous-buffer)
 
 ;; Helm config
 (define-key global-map [remap find-file] 'helm-find-files)
@@ -64,6 +70,8 @@
 (setq helm-mode-fuzzy-match t)
 (setq helm-M-x-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
+
+(define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
 
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
@@ -98,6 +106,9 @@
 (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+
+;; Enter terminal in emacs mode
+(evil-set-initial-state 'term-mode 'emacs)
 
 ;; Open emacs file in lisp mode
 (add-to-list 'auto-mode-alist '("emacs" . lisp-mode))
