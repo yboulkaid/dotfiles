@@ -26,10 +26,17 @@
 (use-package which-key :ensure t)
 (use-package tabbar :ensure t)
 
+;; Syntax
+(use-package slim-mode :ensure t)
+
+
 (require 'evil)
 (require 'evil-leader)
 (require 'helm)
 (require 'which-key)
+
+;; Syntax
+(require 'slim-mode)
 
 (global-evil-leader-mode)
 (helm-mode 1)
