@@ -55,7 +55,7 @@
 (global-set-key (kbd "s-k") 'evil-window-up)
 (global-set-key (kbd "s-h") 'evil-window-left)
 (global-set-key (kbd "s-l") 'evil-window-right)
-(global-set-key (kbd "s-w") 'delete-window)
+(global-set-key (kbd "s-w") 'kill-buffer)
 (global-set-key "Q" 'delete-window)
 
 (global-set-key (kbd "s-r") 'eval-buffer)
@@ -68,7 +68,7 @@
 (define-key global-map [remap list-buffers] 'helm-buffers-list)
 (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
 (define-key global-map [remap execute-extended-command] 'helm-M-x)
-(setq helm-mode-fuzzy-match t)
+;; (setq helm-mode-fuzzy-match t)
 (setq helm-M-x-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
 
@@ -107,6 +107,9 @@
 (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+(setq neo-theme 'arrow)
+(setq neo-smart-open t)
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; Enter terminal in emacs mode
 (evil-set-initial-state 'term-mode 'emacs)
@@ -175,7 +178,9 @@
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages
    (quote
-    (tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))))
+    (slim-mode tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode)))
+ '(tabbar-separator (quote (0.5)))
+ '(tabbar-use-images nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
