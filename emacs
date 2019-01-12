@@ -25,6 +25,7 @@
 (use-package helm-projectile :ensure t)
 (use-package which-key :ensure t)
 (use-package tabbar :ensure t)
+(use-package move-text :ensure t)
 
 ;; Syntax
 (use-package slim-mode :ensure t)
@@ -103,6 +104,30 @@
 (define-key evil-normal-state-map  "K" 'my/fast-previous-visual-line)
 (define-key evil-visual-state-map  "J" 'my/fast-next-visual-line)
 (define-key evil-visual-state-map  "K" 'my/fast-previous-visual-line)
+
+;; Doesn't work well with regions
+(define-key evil-motion-state-map (kbd "M-J") 'move-text-down)
+(define-key evil-motion-state-map (kbd "M-K") 'move-text-up)
+
+;; https://emacsredux.com/blog/2013/03/26/smarter-open-line/
+(defun smart-open-line ()
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode."
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+
+(defun smart-open-line-above ()
+  "Insert an empty line above the current line.
+Position the cursor at it's beginning, according to the current mode."
+  (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(define-key evil-normal-state-map (kbd "M-j") 'smart-open-line)
+(define-key evil-normal-state-map (kbd "M-k") 'smart-open-line-above)
 
 ;; Hide scrollbar and toolbar
 (scroll-bar-mode -1)
@@ -196,7 +221,7 @@
     ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
  '(package-selected-packages
    (quote
-    (slim-mode tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode)))
+    (move-text slim-mode tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode)))
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
 (custom-set-faces
