@@ -236,6 +236,15 @@ let g:hl_matchit_enable_on_vim_startup = 1
 let g:hl_matchit_speed_level = 1
 let g:hl_matchit_hl_groupname = 'Underlined'
 
+" Set python preference
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
 " Setup VTR and vim-rspec
 augroup setup_vtr
   au!
