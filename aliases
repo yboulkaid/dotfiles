@@ -1,37 +1,19 @@
-alias ll="ls -lah"       # List in long format, include dotfiles
+alias ll="ls -lah"
 alias ..="cd .."
 
-alias fs='foreman start'
-alias dcu='docker-compose up'
 alias log='tail -f log/development.log'
-alias rst='touch tmp/restart.txt && echo touched tmp/restart.txt'
 
 alias s='sublime'
 alias ss='sublime .'
 alias vim=nvim
 alias v=nvim
 alias b=bundle
-alias m='bin/messaging || be messaging'
 alias tmux='TERM=xterm-256color tmux'
 alias ctags="`brew --prefix`/bin/ctags"
 alias dc='docker-compose'
 alias rake='noglob rake'
 alias scheme='rlwrap -r scheme'
 
-# alias python=python3
-# alias py=ptpython
-
-alias pi='cd ~/Projects/ios-app'
-alias po='cd ~/YoussefProjects/o-market'
-alias pbi='cd ~/YoussefProjects/biougrita'
-
-alias va='cd ~/Projects/auktion && vim'
-alias vf='cd ~/Projects/fineart && vim'
-alias vi='cd ~/Projects/ios-app && vim'
-
 alias dot='cd ~/dotfiles'
 alias dl='cd ~/Downloads'
-alias yp='cd ~/YoussefProjects'
-
-alias cb='git rev-parse --abbrev-ref HEAD | tr -d "\n" | pbcopy'
-alias tags='ag -l | ctags --links=no -L-'
+alias yp='cd ~/Projects/yboulkaid'
