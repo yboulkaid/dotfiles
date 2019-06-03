@@ -29,3 +29,5 @@ eval "$(direnv hook zsh)"
 # Allow [ or ] whereever you want
 # Cf. https://github.com/thoughtbot/dotfiles/pull/194
 unsetopt nomatch
+
+source $HOME/.asdf/asdf.sh
