@@ -26,7 +26,7 @@ let g:python3_host_prog = '/Users/youssef.boulkaid/.pyenv/shims/python3'
 let g:loaded_python_provider=1
 
 call plug#begin('~/.vim/plugged')
-  Plug '/Users/youssef.boulkaid/.biosphere/spheres/bukowskis/homebrew/opt/fzf'
+  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
@@ -345,7 +345,7 @@ set smartcase
 set gdefault
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger
-nmap <leader>vr :e $MYVIMRC<cr>
+nmap <leader>vr :e ~/.vimrc<cr>
 
 " Auto source vimrc on save
 augroup reload_vimrc
