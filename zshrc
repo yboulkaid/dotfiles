@@ -19,8 +19,8 @@ export FZF_CTRL_R_OPTS=--sort
 # Fuzzy find project and open vim
 pp() {
   local dir
-  dir=$(ls -d ~/Projects/* | xargs basename | fzf ) &&
-  cd "/Users/youssef.boulkaid/Projects/$dir"
+  dir=$(find ~/Projects -type d -maxdepth 2 | fzf ) &&
+  cd $dir
 }
 
 setopt auto_cd
