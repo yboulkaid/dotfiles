@@ -89,6 +89,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby'
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
+  Plug 'jparise/vim-graphql'
   " Plug 'pedrohdz/vim-yaml-folds'
 
   " Writing
@@ -185,7 +186,7 @@ set showcmd
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 
-let g:airline_section_y = ''
+let g:airline_section_y = '%{fnamemodify(getcwd(), ":t")}'
 let g:airline_section_z = '%l'
 
 " Enable top buffer list line
