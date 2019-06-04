@@ -22,7 +22,6 @@ set title
 set shortmess+=I " No intro when starting Vim
 set cursorline " Highligt the cursor line
 
-let g:python3_host_prog = '/Users/youssef.boulkaid/.pyenv/shims/python3'
 let g:loaded_python_provider=1
 
 call plug#begin('~/.vim/plugged')
@@ -110,26 +109,24 @@ set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
-let g:neomake_ruby_rubocop_maker = {'args' : ['--config', '/Users/youssef.boulkaid/Projects/style-guide/rubocop.yml']}
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
-      \ 'args': ['--no-color', '--config', '/Users/youssef.boulkaid/Projects/style-guide/slim-lint.yml'],
       \ 'errorformat': '%f:%l [%t] %m'
       \ }
 let g:neomake_scss_sasslint_maker = {
       \ 'exe': 'sass-lint',
-      \ 'args': ['--no-exit', '--verbose', '--format', 'compact', '-c', '/Users/youssef.boulkaid/Projects/style-guide/sass-lint.yml'],
+      \ 'args': ['--no-exit', '--verbose', '--format', 'compact'],
       \ 'errorformat': neomake#makers#ft#javascript#eslint()['errorformat']
       \ }
 let g:neomake_javascript_eslint_maker = {
     \ 'exe': 'eslint',
-    \ 'args': ['--no-color','--format', 'compact', '-c', '/Users/youssef.boulkaid/Projects/style-guide/.eslintrc'],
+    \ 'args': ['--no-color','--format', 'compact'],
     \ 'errorformat': '%f: line %l\, col %c\, %m'
     \ }
 
 let g:neomake_coffee_coffeelint_maker = {
     \ 'exe': 'coffeelint',
-    \ 'args': ['--reporter', 'csv', '-f', '/Users/youssef.boulkaid/Projects/style-guide/coffeelint.json'],
+    \ 'args': ['--reporter', 'csv'],
     \ 'errorformat': '%f\,%l\,%\d%#\,%trror\,%m,%f\,%l\,%trror\,%m,%f\,%l\,%\d%#\,%tarn\,%m,%f\,%l\,%tarn\,%m'
     \ }
 
