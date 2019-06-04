@@ -8,12 +8,18 @@ alias ss='sublime .'
 alias vim=nvim
 alias v=nvim
 alias b=bundle
+alias be='bundle exec'
 alias tmux='TERM=xterm-256color tmux'
 alias ctags="`brew --prefix`/bin/ctags"
 alias dc='docker-compose'
 alias rake='noglob rake'
 alias scheme='rlwrap -r scheme'
 
-alias dot='cd ~/dotfiles'
+alias dot='cd ~/Projects/yboulkaid/dotfiles'
 alias dl='cd ~/Downloads'
 alias yp='cd ~/Projects/yboulkaid'
+
+alias ua='cd ~/Projects/UniversalAvenue/UniversalAvenue'
+alias ga='cd ~/Projects/UniversalAvenue/galaxy'
+alias vu='cd ~/Projects/UniversalAvenue/UniversalAvenue; nvim'
+alias vg='cd ~/Projects/UniversalAvenue/galaxy; nvim'
