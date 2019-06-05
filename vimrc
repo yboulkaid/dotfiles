@@ -137,10 +137,15 @@ let g:neomake_coffee_enabled_makers = ['coffeelint']
 let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 1s; no delay when writing).
+call neomake#configure#automake('nrwi', 500)
+
+let g:neomake_virtualtext_current_error = 0
+
 " Always show sign column
 augroup setup_linter
   autocmd!
-  autocmd BufWritePost * Neomake
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 augroup END
