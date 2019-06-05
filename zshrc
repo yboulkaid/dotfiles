@@ -19,8 +19,8 @@ export FZF_CTRL_R_OPTS=--sort
 # Fuzzy find project and open vim
 pp() {
   local dir
-  dir=$(find ~/Projects -type d -maxdepth 2 | fzf ) &&
-  cd $dir
+  dir=$(find ~/projects -type d -maxdepth 2 | sed 's/\/Users\/yboulkaid\/projects\///g' | fzf ) &&
+  cd "/Users/yboulkaid/projects/$dir"
 }
 
 setopt auto_cd
