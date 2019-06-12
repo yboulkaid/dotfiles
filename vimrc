@@ -386,6 +386,8 @@ set icm=nosplit
 " Enable mouse support
 set mouse=a
 
+autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
+
 " Github to master
 map <leader>gh :Gbrowse<cr>
 
