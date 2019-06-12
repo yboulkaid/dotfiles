@@ -4,6 +4,9 @@ export GIT_EDITOR=nvim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
+# pip3 installs its binaries here. Used for AWS CLI
+export PATH="$PATH:/Users/yboulkaid/.local/bin"
+
 source ~/.aliases
 
 # Source Prezto.
