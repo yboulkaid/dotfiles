@@ -26,11 +26,7 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
-  'editor' \
-  'ruby' \
   'history' \
-  'directory' \
-  'spectrum' \
   'completion' \
   'syntax-highlighting' \
   'history-substring-search' \
@@ -38,7 +34,6 @@ zstyle ':prezto:load' pmodule \
 
 #
 # Autosuggestions
-#
 
 # Set the query found color.
 # zstyle ':prezto:module:autosuggestions:color' found ''
