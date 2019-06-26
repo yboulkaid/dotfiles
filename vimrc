@@ -86,6 +86,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'vim-ruby/vim-ruby'
+  Plug 'leafgarland/typescript-vim'
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
   Plug 'jparise/vim-graphql'
@@ -296,6 +297,7 @@ nmap <C-c> gcil
 
 " Ctrl-P for Fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
+let g:ackprg = 'ag --vimgrep'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 
@@ -349,6 +351,9 @@ set gdefault
 
 " Split edit your vimrc. Type space, v, r in sequence to trigger
 nmap <leader>vr :e ~/.vimrc<cr>
+
+nmap <leader>gc :set filetype=gitcommit<cr>
+
 
 " Auto source vimrc on save
 augroup reload_vimrc
