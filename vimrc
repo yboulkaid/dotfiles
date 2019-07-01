@@ -41,7 +41,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-easy-align'
   " Plug 'machakann/vim-swap'
   " Plug 'godlygeek/tabular'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
   " Snippets
   Plug 'garbas/vim-snipmate'
@@ -204,12 +203,6 @@ nmap Ω :BD!<cr>
 
 " Alt + w to close the buffer and window
 nmap Q :q<cr>
-
-" Solargraph / LanguageClient
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ }
 
 " Run deoplete
 let g:deoplete#enable_at_startup = 0
