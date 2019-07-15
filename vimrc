@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'qpkorr/vim-bufkill'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Townk/vim-autoclose'
-  Plug 'mileszs/ack.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'junegunn/vim-easy-align'
@@ -290,7 +289,6 @@ nmap <C-c> gcil
 
 " Ctrl-P for Fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
-let g:ackprg = 'ag --vimgrep'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 
@@ -367,7 +365,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Leader F and C-f for search
 map <leader>f :Ag<cr>
 nmap <C-f> :Ag<cr>
-let g:ackprg = 'ag --vimgrep'
 
 " Refresh syntax with alt + L
 nmap <silent> ﬁ :syntax on<cr>
