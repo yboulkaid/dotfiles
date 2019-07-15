@@ -312,7 +312,6 @@ vnoremap K 7k
 " Alt-S to save
 nmap ß :w<cr>
 
-
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
@@ -350,9 +349,6 @@ nmap <C-f> :Ag<cr>
 
 " Refresh syntax with alt + L
 nmap <silent> ﬁ :syntax on<cr>
-
-" Alt+c copies the word in the clipboard
-nmap ç yiw
 
 " C-x deletes the current line (like in sublime)
 nmap <C-x> dd
