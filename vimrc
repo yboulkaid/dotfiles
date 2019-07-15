@@ -38,8 +38,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'junegunn/vim-easy-align'
-  " Plug 'machakann/vim-swap'
-  " Plug 'godlygeek/tabular'
 
   " Snippets
   Plug 'garbas/vim-snipmate'
@@ -48,7 +46,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neosnippet-snippets'
 
   " Interface
-  " Plug 'romainl/vim-qf'
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -71,13 +68,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-line'
 
   " Motions
-  " Plug 'easymotion/vim-easymotion'
   Plug 'vim-scripts/ReplaceWithRegister'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
 
   " Syntax
-  " Plug 'gabrielelana/vim-markdown'
   Plug 'kchmck/vim-coffee-script'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
@@ -88,7 +83,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
   Plug 'jparise/vim-graphql'
-  " Plug 'pedrohdz/vim-yaml-folds'
 
   " Writing
   Plug 'junegunn/goyo.vim'
@@ -158,8 +152,6 @@ colorscheme blackboard
 nmap ¶ :colorscheme morning <bar> :AirlineTheme papercolor<CR>
 nmap © :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
-" Relative numbering
-" set relativenumber
 set number
 
 " Tab buffer switching
@@ -200,7 +192,7 @@ let g:airline_highlighting_cache = 1
 " Alt + w to close the buffer
 nmap Ω :BD!<cr>
 
-" Alt + w to close the buffer and window
+" Q to close the buffer and window
 nmap Q :q<cr>
 
 " Run deoplete
