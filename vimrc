@@ -297,20 +297,7 @@ nmap <silent> <leader>p :Buffers<cr>
 set splitbelow
 set splitright
 
-" Remap öä to []
-nmap ö [
-nmap ä ]
-omap ö [
-omap ä ]
-xmap ö [
-xmap ä ]
-
 nmap zz za
-" Navigate between ruby methods with leader-m/n
-" map <leader>M [m
-" map <leader>N [M
-" map <leader>m ]m
-" map <leader>n ]M
 
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
