@@ -297,11 +297,6 @@ nmap <silent> <leader>p :Buffers<cr>
 set splitbelow
 set splitright
 
-" Quickfix window
-nmap <leader>x <Plug>QfCtoggle
-" nmap [ <Plug>QfCnext
-" nmap ] <Plug>QfCprevious
-
 " Remap öä to []
 nmap ö [
 nmap ä ]
