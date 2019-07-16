@@ -47,7 +47,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ap/vim-css-color'
-  Plug 'wesQ3/vim-windowswap'
   Plug 'vimtaku/hl_matchit.vim'
   Plug 'machakann/vim-highlightedyank'
 
@@ -70,7 +69,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
 
   " Syntax
-  Plug 'kchmck/vim-coffee-script'
   Plug 'slim-template/vim-slim'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
@@ -95,7 +93,6 @@ set colorcolumn=100
 " Don't use ! as a word delimiter
 set iskeyword+=!
 set iskeyword+=?
-" au Filetype slim set iskeyword-=_
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -114,16 +111,9 @@ let g:neomake_javascript_eslint_maker = {
     \ 'errorformat': '%f: line %l\, col %c\, %m'
     \ }
 
-let g:neomake_coffee_coffeelint_maker = {
-    \ 'exe': 'coffeelint',
-    \ 'args': ['--reporter', 'csv'],
-    \ 'errorformat': '%f\,%l\,%\d%#\,%trror\,%m,%f\,%l\,%trror\,%m,%f\,%l\,%\d%#\,%tarn\,%m,%f\,%l\,%tarn\,%m'
-    \ }
-
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['sasslint']
-let g:neomake_coffee_enabled_makers = ['coffeelint']
 let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 
