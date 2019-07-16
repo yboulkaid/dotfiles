@@ -30,7 +30,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
-  Plug 'tomtom/tlib_vim'
   Plug 'qpkorr/vim-bufkill'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Townk/vim-autoclose'
