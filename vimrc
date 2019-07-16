@@ -30,7 +30,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
-  Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
   Plug 'qpkorr/vim-bufkill'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -40,7 +39,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-easy-align'
 
   " Snippets
-  Plug 'garbas/vim-snipmate'
   Plug 'honza/vim-snippets'
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
