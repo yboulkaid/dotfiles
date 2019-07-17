@@ -153,11 +153,11 @@ nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
 :nmap å :pu<CR>==
 
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
-nmap º [e
-nmap ¬ ]e
+nmap <M-K> [e
+nmap <M-J> ]e
 
-vmap º [egv
-vmap ¬ ]egv
+vmap <M-K> [egv
+vmap <M-J> ]egv
 
 " Show the command while typing it
 set showcmd
@@ -177,7 +177,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_highlighting_cache = 1
 
 " Alt + w to close the buffer
-nmap Ω :BD!<cr>
+nmap <M-w> :BD!<cr>
 
 " Q to close the buffer and window
 nmap Q :q<cr>
@@ -255,7 +255,7 @@ nmap <Leader>. :vsplit<cr>
 nmap <Leader>- :split<cr>
 
 " redraw the screen with alt-L
-nmap ﬁ :redraw!
+nmap <M-l> :redraw!
 
 " Remove trailing whitespace
 autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -289,7 +289,7 @@ vnoremap J 7j
 vnoremap K 7k
 
 " Alt-S to save
-nmap ß :w<cr>
+nmap <M-s> :w<cr>
 
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -326,8 +326,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <leader>f :Ag<cr>
 nmap <C-f> :Ag<cr>
 
-" Refresh syntax with alt + L
-nmap <silent> ﬁ :syntax on<cr>
+" " Refresh syntax with alt + L
+" nmap <silent> ﬁ :syntax on<cr>
 
 " C-x deletes the current line (like in sublime)
 nmap <C-x> dd
