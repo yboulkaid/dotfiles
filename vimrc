@@ -146,8 +146,8 @@ nmap <Tab> :bn<cr>
 nmap <S-Tab> :bp<cr>
 
 " Insert new lines above or below the cursor
-nnoremap <silent> √ :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent> ª :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Paste on newlines with å
 :nmap å :pu<CR>==
