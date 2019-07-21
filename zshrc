@@ -36,3 +36,7 @@ eval "$(direnv hook zsh)"
 unsetopt nomatch
 
 source $HOME/.asdf/asdf.sh
+
+if [ "$TMUX" = "" ]; 
+then tmux attach -t base || tmux new -s base
+fi
