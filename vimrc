@@ -253,6 +253,7 @@ nnoremap <silent> <leader>l :noh<CR>
 " V split
 nmap <Leader>. :vsplit<cr>
 nmap <Leader>- :split<cr>
+nmap <Leader>/ :split<cr>
 
 " redraw the screen with alt-L
 nmap <M-l> :redraw!
