@@ -150,7 +150,8 @@ nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Paste on newlines with å
-:nmap å :pu<CR>==
+" :nmap å :pu<CR>==
+:nmap <M-p> :pu<CR>==
 
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
 nmap <M-K> [e
