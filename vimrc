@@ -259,7 +259,7 @@ nmap <Leader>/ :split<cr>
 nmap <M-l> :redraw!
 
 " Remove trailing whitespace
-autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
