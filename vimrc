@@ -244,6 +244,7 @@ endfunction
 
 map <Leader>vtr :VtrOpenRunner<cr>
 map <Leader>kvtr :VtrKillRunner<cr>
+map <Leader>vtra :VtrAttachToPane<cr>
 map <leader>b :VtrSendLinesToRunner<cr>
 map <leader>B :VtrSendFile!<cr>
 
