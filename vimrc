@@ -309,11 +309,10 @@ nmap <leader>vr :e ~/.vimrc<cr>
 
 nmap <leader>gc :set filetype=gitcommit<cr>
 
-
 " Auto source vimrc on save
 augroup reload_vimrc
   autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+  autocmd BufWritePost /Users/yboulkaid/.vimrc source $MYVIMRC
 augroup END
 
 " Open explorer
