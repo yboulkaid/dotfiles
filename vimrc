@@ -325,13 +325,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Leader F and C-f for search
 map <leader>f :Ag<cr>
-nmap <C-f> :Ag<cr>
 
 " " Refresh syntax with alt + L
 " nmap <silent> ﬁ :syntax on<cr>
-
-" C-x deletes the current line (like in sublime)
-nmap <C-x> dd
 
 " Live preview splitting in neovim
 set icm=nosplit
