@@ -275,6 +275,10 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 
+" Don't match patterns in the filename
+" https://github.com/junegunn/fzf.vim/issues/346
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " More natural splits
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 set splitbelow
@@ -355,3 +359,7 @@ autocmd! User GoyoLeave Limelight!
 
 autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
 autocmd FileType markdown set linebreak
+
+" Quickfix
+nmap <M-Down> :cn<cr>
+nmap <M-Up> :cp<cr>
