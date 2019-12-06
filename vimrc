@@ -137,8 +137,8 @@ set softtabstop=2
 set expandtab
 
 colorscheme blackboard
-nmap ¶ :colorscheme morning <bar> :AirlineTheme papercolor<CR>
-nmap © :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
+nmap <M-2> :colorscheme morning <bar> :AirlineTheme papercolor<CR>
+nmap <M-1> :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
 set number
 
