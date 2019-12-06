@@ -40,3 +40,5 @@ source $HOME/.asdf/asdf.sh
 if [ "$TMUX" = "" ]; 
 then tmux attach -t base || tmux new -s base
 fi
+
+export PATH="$HOME/.bin:$PATH"
