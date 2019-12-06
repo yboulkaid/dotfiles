@@ -230,8 +230,8 @@ augroup setup_vtr
 augroup END
 
 function! VtrForRuby()
-  let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
-  " let g:rspec_command = "VtrSendCommand! be rspec {spec}"
+  let g:rspec_command = "VtrSendCommand! spring rspec {spec}"
+  " let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
   map <Leader>r :call RunLastSpec()<CR>
