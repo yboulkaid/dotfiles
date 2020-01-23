@@ -215,11 +215,11 @@ let g:hl_matchit_hl_groupname = 'Underlined'
 
 " Set python preference
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set expandtab
-    \ set autoindent
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set expandtab |
+    \ set autoindent |
     \ set fileformat=unix
 
 " Setup VTR and vim-rspec
