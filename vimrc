@@ -78,6 +78,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'robbles/logstash.vim'
   Plug 'chr4/nginx.vim'
   Plug 'jparise/vim-graphql'
+  Plug 'vim-python/python-syntax'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
 
   " Writing
   Plug 'junegunn/goyo.vim'
