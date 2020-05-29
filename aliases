@@ -24,3 +24,5 @@ alias pu='cd ~/Projects/UniversalAvenue/UniversalAvenue'
 alias pg='cd ~/Projects/UniversalAvenue/galaxy'
 alias vu='cd ~/Projects/UniversalAvenue/UniversalAvenue; nvim'
 alias vg='cd ~/Projects/UniversalAvenue/galaxy; nvim'
+
+alias edit-pr='hub issue update $(hub pr list -h  $(git rev-parse --abbrev-ref HEAD) | awk "{print $1}" | sed "s/#//") --edit'
