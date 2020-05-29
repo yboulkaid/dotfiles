@@ -81,6 +81,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-python/python-syntax'
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
+  Plug 'elixir-editors/vim-elixir'
 
   " Writing
   Plug 'junegunn/goyo.vim'
@@ -98,6 +99,7 @@ set iskeyword+=!
 set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
+au FileType perl set filetype=prolog syntax=prolog
 autocmd filetype crontab setlocal nobackup nowritebackup
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
@@ -265,7 +267,7 @@ nmap <Leader>/ :split<cr>
 nmap <M-l> :redraw!
 
 " Remove trailing whitespace
-autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md,prolog,python autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
