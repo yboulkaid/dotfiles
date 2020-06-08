@@ -116,6 +116,13 @@ let g:neomake_javascript_eslint_maker = {
     \ 'errorformat': '%f: line %l\, col %c\, %m'
     \ }
 
+let g:neomake_ruby_rubocop_maker = {
+    \ 'exe': 'bin/rubocop',
+    \ 'args': ['--format', 'emacs', '--force-exclusion', '--display-cop-names'],
+    \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
+    \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
+    \ 'output_stream': 'stdout',
+    \ }
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_scss_enabled_makers = ['sasslint']
