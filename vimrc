@@ -82,10 +82,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'elixir-editors/vim-elixir'
-
-  " Writing
-  Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -199,7 +195,7 @@ nmap Q :q<cr>
 " Run deoplete
 let g:deoplete#enable_at_startup = 0
 autocmd InsertEnter * call deoplete#enable()
-let g:deoplete#max_list = 10
+call deoplete#custom#option('max_list', 5)
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -287,8 +283,9 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 
-nmap <silent> <M-p> :Commands<cr>
-:command FormatJson %!python -m json.tool
+" Command palette
+" nmap <silent> <D-p> :Commands<cr>
+command! FormatJson %!python -m json.tool
 
 " Don't match patterns in the filename
 " https://github.com/junegunn/fzf.vim/issues/346
@@ -368,10 +365,6 @@ map <leader>ghm :Gbrowse master:%<cr>
 xmap ga <Plug>(EasyAlign)
 
 " Writing mode (markdown)
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
 autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
 autocmd FileType markdown set linebreak
 
