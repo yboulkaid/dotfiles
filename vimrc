@@ -282,6 +282,7 @@ nmap <C-c> gcil
 let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
+let g:fzf_preview_window = ''
 
 " Command palette
 " nmap <silent> <D-p> :Commands<cr>
