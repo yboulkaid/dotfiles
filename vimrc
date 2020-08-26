@@ -47,7 +47,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ap/vim-css-color'
-  Plug 'vimtaku/hl_matchit.vim'
   Plug 'machakann/vim-highlightedyank'
 
   " Tmux magic
@@ -67,6 +66,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-scripts/ReplaceWithRegister'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
+  Plug 'andymass/vim-matchup'
 
   " Syntax
   Plug 'slim-template/vim-slim'
@@ -214,12 +214,6 @@ xmap <C-e> <Plug>(neosnippet_expand_target)
 
 " Snippets config
 let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Run ruby matchit
-runtime macros/matchit.vim
-let g:hl_matchit_enable_on_vim_startup = 1
-let g:hl_matchit_speed_level = 1
-let g:hl_matchit_hl_groupname = 'Underlined'
 
 " Set python preference
 au BufNewFile,BufRead *.py
