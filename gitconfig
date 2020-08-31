@@ -9,3 +9,5 @@
 	s = status
 [core]
 	excludesfile = ~/.gitignore_global
+[pull]
+	rebase = true
