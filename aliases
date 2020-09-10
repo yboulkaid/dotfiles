@@ -15,6 +15,7 @@ alias dc='docker-compose'
 alias rake='noglob rake'
 alias scheme='rlwrap -r scheme'
 alias tags='ctags -R --exclude=node_modules --exclude=.git .'
+alias rc='spring rails c'
 
 alias dotf='cd ~/Projects/yboulkaid/dotfiles'
 alias dl='cd ~/Downloads'
