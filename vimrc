@@ -192,6 +192,9 @@ nmap <M-w> :BD!<cr>
 " Q to close the buffer and window
 nmap Q :q<cr>
 
+" Don't show matchup in status line
+let g:matchup_matchparen_offscreen = {}
+
 " Run deoplete
 let g:deoplete#enable_at_startup = 0
 autocmd InsertEnter * call deoplete#enable()
