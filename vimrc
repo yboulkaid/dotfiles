@@ -277,6 +277,7 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 let g:fzf_preview_window = ''
+set completeopt=menu
 
 " Command palette
 " nmap <silent> <D-p> :Commands<cr>
