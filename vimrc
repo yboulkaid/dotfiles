@@ -9,6 +9,7 @@ augroup ft_rb
   " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
   au FileType ruby setlocal re=1 foldmethod=manual
 augroup END
+let g:ruby_path = '/Users/yboulkaid/.asdf/shims/ruby'
 
 autocmd VimResized * :wincmd =
 
