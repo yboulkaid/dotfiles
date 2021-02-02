@@ -5,6 +5,7 @@ export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
+export HISTSIZE=1000
 
 # pip3 installs its binaries here. Used for AWS CLI
 export PATH="$PATH:/Users/yboulkaid/.local/bin"
