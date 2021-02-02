@@ -371,3 +371,5 @@ autocmd FileType markdown set linebreak
 " Quickfix
 nmap <M-Down> :cn<cr>
 nmap <M-Up> :cp<cr>
+
+command! -bang App call fzf#run(fzf#wrap({'source': 'ag --hidden -g "" app'}, <bang>0))
