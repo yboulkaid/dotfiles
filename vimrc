@@ -102,11 +102,6 @@ let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
       \ 'errorformat': '%f:%l [%t] %m'
       \ }
-let g:neomake_scss_sasslint_maker = {
-      \ 'exe': 'sass-lint',
-      \ 'args': ['--no-exit', '--verbose', '--format', 'compact'],
-      \ 'errorformat': neomake#makers#ft#javascript#eslint()['errorformat']
-      \ }
 let g:neomake_javascript_eslint_maker = {
     \ 'exe': 'eslint',
     \ 'args': ['--no-color','--format', 'compact'],
@@ -122,7 +117,6 @@ let g:neomake_ruby_rubocop_maker = {
     \ }
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_scss_enabled_makers = ['sasslint']
 let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 
