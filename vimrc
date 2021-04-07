@@ -1,5 +1,6 @@
 let mapleader = "\<Space>"
 
+set confirm
 set clipboard=unnamed
 language en_US
 
@@ -49,6 +50,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ap/vim-css-color'
   Plug 'machakann/vim-highlightedyank'
+  Plug 'pbrisbin/vim-mkdir'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
