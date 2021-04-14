@@ -214,6 +214,7 @@ xmap <C-e> <Plug>(neosnippet_expand_target)
 
 " Snippets config
 let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory = '~/Projects/yboulkaid/dotfiles/snippets'
 
 " Set python preference
 au BufNewFile,BufRead *.py

@@ -1,0 +1,6 @@
+snippet     field_validation
+alias       blg
+abbr        it_behaves_like 'a GraphQL type'
+  it_behaves_like 'a GraphQL type' do
+    let(:model) { build(:${1:#:model}) }
+  end
