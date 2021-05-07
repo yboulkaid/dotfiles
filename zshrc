@@ -43,3 +43,5 @@ then tmux attach -t base || tmux new -s base
 fi
 
 export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
