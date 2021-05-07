@@ -11,3 +11,5 @@
 	excludesfile = ~/.gitignore_global
 [pull]
 	rebase = true
+[init]
+	defaultBranch = master
