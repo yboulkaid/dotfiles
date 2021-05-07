@@ -229,7 +229,6 @@ au BufNewFile,BufRead *.py
 augroup setup_vtr
   au!
   autocmd Filetype ruby call VtrForRuby()
-  autocmd Filetype python call VtrForPython()
 augroup END
 
 function! VtrForRuby()
@@ -237,21 +236,14 @@ function! VtrForRuby()
   " let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
-  map <Leader>r :call RunLastSpec()<CR>
 endfunction
 
-function! VtrForPython()
-  map <Leader>t :VtrSendFile!<CR>
-  let g:VtrStripLeadingWhitespace = 0
-  let g:VtrClearEmptyLines = 0
-  let g:VtrAppendNewline = 1
-endfunction
 
-map <Leader>vtr :VtrOpenRunner<cr>
-map <Leader>kvtr :VtrKillRunner<cr>
+" map <Leader>vtr :VtrOpenRunner<cr>
+" map <Leader>kvtr :VtrKillRunner<cr>
 map <Leader>vtra :VtrAttachToPane<cr>
-map <leader>b :VtrSendLinesToRunner<cr>
-map <leader>B :VtrSendFile!<cr>
+" map <leader>b :VtrSendLinesToRunner<cr>
+" map <leader>B :VtrSendFile!<cr>
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
