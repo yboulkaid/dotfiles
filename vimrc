@@ -2,15 +2,16 @@ let mapleader = "\<Space>"
 
 set confirm
 set clipboard=unnamed
+set termguicolors
 language en_US
 
-augroup ft_rb
-  au!
-  " fix the SLOOOW syntax highlighting
-  " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-  au FileType ruby setlocal re=1 foldmethod=manual
-augroup END
-let g:ruby_path = '/Users/yboulkaid/.asdf/shims/ruby'
+" augroup ft_rb
+"   au!
+"   " fix the SLOOOW syntax highlighting
+"   " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
+"   au FileType ruby setlocal re=1 foldmethod=manual
+" augroup END
+" let g:ruby_path = '/Users/yboulkaid/.asdf/shims/ruby'
 
 autocmd VimResized * :wincmd =
 
@@ -33,14 +34,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
-  Plug 'junegunn/vim-easy-align'
+  " Plug 'junegunn/vim-easy-align'
+  " Plug 'kovisoft/slimv'
+  Plug 'norcalli/nvim-colorizer.lua'
 
   " Snippets
-  Plug 'honza/vim-snippets'
+  " Plug 'honza/vim-snippets'
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
 
@@ -48,7 +50,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'ap/vim-css-color'
+  " Plug 'ap/vim-css-color'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
 
@@ -72,19 +74,24 @@ call plug#begin('~/.vim/plugged')
   Plug 'andymass/vim-matchup'
 
   " Syntax
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
+  " Plug 'pangloss/vim-javascript'
+  " Plug 'mxw/vim-jsx'
   Plug 'cakebaker/scss-syntax.vim'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'robbles/logstash.vim'
-  Plug 'chr4/nginx.vim'
+  " Plug 'vim-ruby/vim-ruby'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'robbles/logstash.vim'
+  " Plug 'chr4/nginx.vim'
   Plug 'jparise/vim-graphql'
   Plug 'vim-python/python-syntax'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'elixir-editors/vim-elixir'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'peitalin/vim-jsx-typescript'
+  " Plug 'elixir-editors/vim-elixir'
+
+  Plug 'rafamadriz/neon', { 'branch': 'main' }
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -98,7 +105,6 @@ set iskeyword+=!
 set iskeyword+=?
 
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
-au FileType perl set filetype=prolog syntax=prolog
 autocmd filetype crontab setlocal nobackup nowritebackup
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
@@ -124,24 +130,20 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 
 " Full config: when writing or reading a buffer, and on changes in insert and
 " normal mode (after 1s; no delay when writing).
-call neomake#configure#automake('nrwi', 500)
+call neomake#configure#automake('nrwi', 100)
 let g:neomake_tempfile_dir = '/tmp/neomake'
 
 let g:neomake_virtualtext_current_error = 0
 
 " Always show sign column
-augroup setup_linter
-  autocmd!
-  autocmd BufEnter * sign define dummy
-  autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-augroup END
+set signcolumn=yes
 
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-colorscheme blackboard
+colorscheme neon
 nmap <M-2> :colorscheme morning <bar> :AirlineTheme papercolor<CR>
 nmap <M-1> :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
@@ -193,19 +195,19 @@ nmap Q :q<cr>
 let g:matchup_matchparen_offscreen = {}
 
 " Run deoplete
-let g:deoplete#enable_at_startup = 0
-autocmd InsertEnter * call deoplete#enable()
-call deoplete#custom#option('max_list', 5)
+" let g:deoplete#enable_at_startup = 0
+" autocmd InsertEnter * call deoplete#enable()
+" call deoplete#custom#option('max_list', 5)
 
 " deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 
 " Don't press escape key twice to quit insert mode https://github.com/Shougo/deoplete.nvim/issues/386
-let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
+" let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
 
 " Disable CTags source
-call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+" call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
 " Plugin key-mappings.
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
@@ -238,7 +240,6 @@ function! VtrForRuby()
   map <Leader>s :call RunNearestSpec()<CR>
 endfunction
 
-
 " map <Leader>vtr :VtrOpenRunner<cr>
 " map <Leader>kvtr :VtrKillRunner<cr>
 map <Leader>vtra :VtrAttachToPane<cr>
@@ -252,9 +253,6 @@ nnoremap <silent> <leader>l :noh<CR>
 nmap <Leader>. :vsplit<cr>
 nmap <Leader>- :split<cr>
 nmap <Leader>/ :split<cr>
-
-" redraw the screen with alt-L
-nmap <M-l> :redraw!
 
 " Remove trailing whitespace
 autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md,prolog,python autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -274,7 +272,6 @@ set completeopt=menu
 
 " Command palette
 " nmap <silent> <D-p> :Commands<cr>
-command! FormatJson %!python -m json.tool
 
 " Don't match patterns in the filename
 " https://github.com/junegunn/fzf.vim/issues/346
@@ -351,10 +348,10 @@ map <leader>gh :Gbrowse<cr>
 map <leader>ghm :Gbrowse master:%<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 
 " Writing mode (markdown)
-autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
+" autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
 autocmd FileType markdown set linebreak
 
 " Quickfix
@@ -362,3 +359,36 @@ nmap <M-Down> :cn<cr>
 nmap <M-Up> :cp<cr>
 
 command! -bang App call fzf#run(fzf#wrap({'source': 'ag --hidden -g "" app'}, <bang>0))
+let g:swank_log=1
+
+autocmd BufEnter * lua require'completion'.on_attach()
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+let g:completion_enable_auto_hover = 0
+
+" Neosnippet support
+let g:completion_enable_snippet = 'Neosnippet'
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "ruby" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  }
+}
+
+require'colorizer'.setup()
+
+require'lspconfig'.solargraph.setup{}
+EOF
