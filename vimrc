@@ -48,11 +48,14 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'scrooloose/nerdtree'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'vim-airline/vim-airline-themes'
   " Plug 'ap/vim-css-color'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
+  Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+  Plug 'akinsho/nvim-bufferline.lua'
+  Plug 'hoob3rt/lualine.nvim'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -144,8 +147,8 @@ set softtabstop=2
 set expandtab
 
 colorscheme neon
-nmap <M-2> :colorscheme morning <bar> :AirlineTheme papercolor<CR>
-nmap <M-1> :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
+" nmap <M-2> :colorscheme morning <bar> :AirlineTheme papercolor<CR>
+" nmap <M-1> :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
 
 set number
 
@@ -172,18 +175,18 @@ vmap <M-J> ]egv
 set showcmd
 
 " Airline config
-let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts = 1
+" let g:airline_theme='bubblegum'
+" let g:airline_powerline_fonts = 1
 
-let g:airline_section_y = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_section_z = '%l'
+" let g:airline_section_y = '%{fnamemodify(getcwd(), ":t")}'
+" let g:airline_section_z = '%l'
 
 " Enable top buffer list line
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_highlighting_cache = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_highlighting_cache = 1
 
 " Alt + w to close the buffer
 nmap <M-w> :BD!<cr>
@@ -391,4 +394,6 @@ require'nvim-treesitter.configs'.setup {
 require'colorizer'.setup()
 
 require'lspconfig'.solargraph.setup{}
+require('bufferline').setup{}
+require('lualine').setup()
 EOF
