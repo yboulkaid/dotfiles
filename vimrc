@@ -95,6 +95,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'rafamadriz/neon', { 'branch': 'main' }
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
+  Plug 'steelsojka/completion-buffers'
+  Plug 'nvim-treesitter/completion-treesitter'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -254,6 +256,7 @@ nnoremap <silent> <leader>l :noh<CR>
 
 " V split
 nmap <Leader>. :vsplit<cr>
+nmap <Leader>\ :vsplit<cr>
 nmap <Leader>- :split<cr>
 nmap <Leader>/ :split<cr>
 
@@ -271,7 +274,7 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 let g:fzf_preview_window = ''
-set completeopt=menu
+" set completeopt=menu
 
 " Command palette
 " nmap <silent> <D-p> :Commands<cr>
@@ -299,6 +302,7 @@ vnoremap K 7k
 
 " Alt-S to save
 nmap <M-s> :w<cr>
+nmap <D-s> :w<cr>
 
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -375,10 +379,22 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-let g:completion_enable_auto_hover = 0
+" let g:completion_enable_auto_hover = 0
 
 " Neosnippet support
 let g:completion_enable_snippet = 'Neosnippet'
+let g:completion_trigger_keyword_length = 2
+let g:completion_enable_server_trigger = 0
+
+let g:completion_auto_change_source = 1
+let g:completion_chain_complete_list = {
+	    \'default' : [
+	    \    {'complete_items': ['path']},
+	    \    {'complete_items': ['buffers', 'snippet']},
+	    \    {'mode': '<c-p>'},
+	    \    {'mode': '<c-n>'}
+	    \]
+      \}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -393,7 +409,6 @@ require'nvim-treesitter.configs'.setup {
 
 require'colorizer'.setup()
 
-require'lspconfig'.solargraph.setup{}
 require('bufferline').setup{}
 require('lualine').setup()
 EOF
