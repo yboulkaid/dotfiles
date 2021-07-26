@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
   Plug 'qpkorr/vim-bufkill'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
@@ -42,7 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'norcalli/nvim-colorizer.lua'
 
   " Snippets
-  " Plug 'honza/vim-snippets'
+  Plug 'honza/vim-snippets'
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
 
@@ -94,9 +95,6 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'rafamadriz/neon', { 'branch': 'main' }
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'steelsojka/completion-buffers'
-  Plug 'nvim-treesitter/completion-treesitter'
 call plug#end()
 
 " Enable jsx highlighting on regular js files
@@ -200,19 +198,19 @@ nmap Q :q<cr>
 let g:matchup_matchparen_offscreen = {}
 
 " Run deoplete
-" let g:deoplete#enable_at_startup = 0
-" autocmd InsertEnter * call deoplete#enable()
-" call deoplete#custom#option('max_list', 5)
+let g:deoplete#enable_at_startup = 0
+autocmd InsertEnter * call deoplete#enable()
+call deoplete#custom#option('max_list', 5)
 
 " deoplete tab-complete
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
 
 " Don't press escape key twice to quit insert mode https://github.com/Shougo/deoplete.nvim/issues/386
-" let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
+let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
 
 " Disable CTags source
-" call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
 " Plugin key-mappings.
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
@@ -274,7 +272,6 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 let g:fzf_preview_window = ''
-" set completeopt=menu
 
 " Command palette
 " nmap <silent> <D-p> :Commands<cr>
@@ -368,33 +365,8 @@ nmap <M-Up> :cp<cr>
 command! -bang App call fzf#run(fzf#wrap({'source': 'ag --hidden -g "" app'}, <bang>0))
 let g:swank_log=1
 
-autocmd BufEnter * lua require'completion'.on_attach()
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
-" let g:completion_enable_auto_hover = 0
-
-" Neosnippet support
-let g:completion_enable_snippet = 'Neosnippet'
-let g:completion_trigger_keyword_length = 2
-let g:completion_enable_server_trigger = 0
-
-let g:completion_auto_change_source = 1
-let g:completion_chain_complete_list = {
-	    \'default' : [
-	    \    {'complete_items': ['path']},
-	    \    {'complete_items': ['buffers', 'snippet']},
-	    \    {'mode': '<c-p>'},
-	    \    {'mode': '<c-n>'}
-	    \]
-      \}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -403,7 +375,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
   indent = {
-    enable = true
+    enable = false
   }
 }
 
