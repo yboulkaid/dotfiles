@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
+  Plug 'bfredl/nvim-miniyank'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -133,7 +134,7 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 
 " Full config: when writing or reading a buffer, and on changes in insert and
 " normal mode (after 1s; no delay when writing).
-call neomake#configure#automake('nrwi', 100)
+call neomake#configure#automake('rw', 100)
 let g:neomake_tempfile_dir = '/tmp/neomake'
 
 let g:neomake_virtualtext_current_error = 0
@@ -367,6 +368,11 @@ let g:swank_log=1
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>n <Plug>(miniyank-cycle)
+map <leader>N <Plug>(miniyank-cycleback)
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
