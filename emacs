@@ -212,14 +212,12 @@ Position the cursor at it's beginning, according to the current mode."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-enabled-themes (quote (blackboard)))
+ '(custom-enabled-themes '(blackboard))
  '(custom-safe-themes
-   (quote
-    ("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default)))
+   '("4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" default))
  '(package-selected-packages
-   (quote
-    (move-text slim-mode tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode)))
- '(tabbar-separator (quote (0.5)))
+   '(move-text slim-mode tabbar helm-ag helm-projectile which-key evil-commentary helm projectile neotree evil-leader evil-visual-mark-mode))
+ '(tabbar-separator '(0.5))
  '(tabbar-use-images nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
