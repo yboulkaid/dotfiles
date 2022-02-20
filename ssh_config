@@ -1,0 +1,24 @@
+Host *
+  AddKeysToAgent yes
+  StrictHostKeyChecking no
+  ForwardAgent no
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host ua-tooling-dev
+	HostName ec2-34-253-8-42.eu-west-1.compute.amazonaws.com
+	User dev
+
+Host nas.el
+	User yboulkaid
+
+Host asus
+  Hostname 192.168.1.1
+	User admin
+
+Host osemosys-sidekiq
+  Hostname 54.74.90.91
+  User ubuntu
+
+Host osemosys-dash
+  Hostname 52.18.15.80
+  User ubuntu
