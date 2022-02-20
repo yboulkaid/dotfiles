@@ -347,10 +347,10 @@ set mouse=a
 autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
 
 " Github to master
-map <leader>gh :Gbrowse<cr>
+map <leader>gh :GBrowse<cr>
 
 " Github to master
-map <leader>ghm :Gbrowse master:%<cr>
+map <leader>ghm :GBrowse master:%<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)
