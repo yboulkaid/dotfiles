@@ -28,13 +28,13 @@ set cursorline " Highligt the cursor line
 let g:loaded_python_provider=1
 
 call plug#begin('~/.vim/plugged')
-  Plug '/usr/local/opt/fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':TSUpdate' }
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
