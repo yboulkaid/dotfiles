@@ -7,7 +7,13 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export HISTSIZE=1000
 
-# pip3 installs its binaries here. Used for AWS CLI
+# NPM packages
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Homebrew CBC is keg-only
+export PATH="/opt/homebrew/opt/cbc/bin:$PATH"
+
+# pip installs its binaries here. Used for AWS CLI
 export PATH="$PATH:/Users/yboulkaid/.local/bin"
 
 source ~/.aliases
@@ -41,9 +47,6 @@ source $HOME/.asdf/asdf.sh
 if [ "$TMUX" = "" ]; 
 then tmux attach -t base || tmux new -s base
 fi
-
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export DIRENV_LOG_FORMAT=
 
 # >>> conda initialize >>>
