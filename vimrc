@@ -38,8 +38,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
-  " Plug 'junegunn/vim-easy-align'
-  " Plug 'kovisoft/slimv'
   Plug 'norcalli/nvim-colorizer.lua'
 
   " Snippets
@@ -49,15 +47,11 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'scrooloose/nerdtree'
-  " Plug 'vim-airline/vim-airline'
-  " Plug 'vim-airline/vim-airline-themes'
-  " Plug 'ap/vim-css-color'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'bfredl/nvim-miniyank'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -81,18 +75,9 @@ call plug#begin('~/.vim/plugged')
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
-  " Plug 'pangloss/vim-javascript'
-  " Plug 'mxw/vim-jsx'
   Plug 'cakebaker/scss-syntax.vim'
-  " Plug 'vim-ruby/vim-ruby'
-  " Plug 'leafgarland/typescript-vim'
-  " Plug 'robbles/logstash.vim'
-  " Plug 'chr4/nginx.vim'
   Plug 'jparise/vim-graphql'
   Plug 'vim-python/python-syntax'
-  " Plug 'leafgarland/typescript-vim'
-  " Plug 'peitalin/vim-jsx-typescript'
-  " Plug 'elixir-editors/vim-elixir'
 
   Plug 'rafamadriz/neon', { 'branch': 'main' }
   Plug 'neovim/nvim-lspconfig'
@@ -146,12 +131,9 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set number
 
 colorscheme neon
-" nmap <M-2> :colorscheme morning <bar> :AirlineTheme papercolor<CR>
-" nmap <M-1> :colorscheme blackboard <bar> :AirlineTheme bubblegum<CR>
-
-set number
 
 " Tab buffer switching
 nmap <Tab> :bn<cr>
@@ -161,8 +143,7 @@ nmap <S-Tab> :bp<cr>
 nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
-" Paste on newlines with å
-" :nmap å :pu<CR>==
+" Paste on newlines with Option-P
 :nmap <M-p> :pu<CR>==
 
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
@@ -174,20 +155,6 @@ vmap <M-J> ]egv
 
 " Show the command while typing it
 set showcmd
-
-" Airline config
-" let g:airline_theme='bubblegum'
-" let g:airline_powerline_fonts = 1
-
-" let g:airline_section_y = '%{fnamemodify(getcwd(), ":t")}'
-" let g:airline_section_z = '%l'
-
-" Enable top buffer list line
-" let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_highlighting_cache = 1
 
 " Alt + w to close the buffer
 nmap <M-w> :BD!<cr>
@@ -238,17 +205,12 @@ augroup setup_vtr
 augroup END
 
 function! VtrForRuby()
-  let g:rspec_command = "VtrSendCommand! spring rspec {spec}"
-  " let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
+  let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
 endfunction
 
-" map <Leader>vtr :VtrOpenRunner<cr>
-" map <Leader>kvtr :VtrKillRunner<cr>
 map <Leader>vtra :VtrAttachToPane<cr>
-" map <leader>b :VtrSendLinesToRunner<cr>
-" map <leader>B :VtrSendFile!<cr>
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
@@ -273,9 +235,6 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
 nmap <silent> <C-p> :Files<cr>
 nmap <silent> <leader>p :Buffers<cr>
 let g:fzf_preview_window = ''
-
-" Command palette
-" nmap <silent> <D-p> :Commands<cr>
 
 " Don't match patterns in the filename
 " https://github.com/junegunn/fzf.vim/issues/346
@@ -311,7 +270,7 @@ set ignorecase
 set smartcase
 set gdefault
 
-" Split edit your vimrc. Type space, v, r in sequence to trigger
+" Split edit your vimrc.
 nmap <leader>vr :e ~/.vimrc<cr>
 
 nmap <leader>gc :set filetype=gitcommit<cr>
@@ -335,9 +294,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Leader F and C-f for search
 map <leader>f :Ag<cr>
 
-" " Refresh syntax with alt + L
-" nmap <silent> ﬁ :syntax on<cr>
-
 " Live preview splitting in neovim
 set icm=nosplit
 
@@ -346,33 +302,22 @@ set mouse=a
 
 autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
 
-" Github to master
+" Open in Github
 map <leader>gh :GBrowse<cr>
 
 " Github to master
 map <leader>ghm :GBrowse master:%<cr>
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-" xmap ga <Plug>(EasyAlign)
-
-" Writing mode (markdown)
-" autocmd FileType markdown call deoplete#custom#buffer_option('auto_complete', v:false)
-autocmd FileType markdown set linebreak
-
 " Quickfix
 nmap <M-Down> :cn<cr>
 nmap <M-Up> :cp<cr>
 
-command! -bang App call fzf#run(fzf#wrap({'source': 'ag --hidden -g "" app'}, <bang>0))
-let g:swank_log=1
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-map <leader>n <Plug>(miniyank-cycle)
-map <leader>N <Plug>(miniyank-cycleback)
+" I'm too old to re-learn
+" https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
+nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -386,7 +331,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require'colorizer'.setup()
-
 require('bufferline').setup{}
 require('lualine').setup()
 EOF
