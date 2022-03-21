@@ -1,23 +1,13 @@
 let mapleader = "\<Space>"
 
+language en_US
+
 set confirm
 set clipboard=unnamed
 set termguicolors
-language en_US
-
-" augroup ft_rb
-"   au!
-"   " fix the SLOOOW syntax highlighting
-"   " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
-"   au FileType ruby setlocal re=1 foldmethod=manual
-" augroup END
-" let g:ruby_path = '/Users/yboulkaid/.asdf/shims/ruby'
-
-autocmd VimResized * :wincmd =
-
-set hidden                      " Allow buffer change w/o saving
-set lazyredraw                  " Don't update while executing macros
-set scrolloff=4                 " Keep at least 4 lines below cursor
+set hidden " Allow buffer change w/o saving
+set lazyredraw " Don't update while executing macros
+set scrolloff=4 " Keep at least 4 lines below cursor
 set noswapfile " Remove temporary swap file
 
 set title
@@ -89,7 +79,7 @@ let g:jsx_ext_required = 0
 " Set the column limit
 set colorcolumn=100
 
-" Don't use ! as a word delimiter
+" Don't use ! and ? as word delimiters
 set iskeyword+=!
 set iskeyword+=?
 
@@ -324,6 +314,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = { "ruby" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,
+    additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = false
