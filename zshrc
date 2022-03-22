@@ -6,13 +6,16 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export HISTSIZE=1000
+export DIRENV_LOG_FORMAT=
 
+# https://github.com/rails/rails/issues/38560
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# PATH additions:
 # NPM packages
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 # Homebrew CBC is keg-only
 export PATH="/opt/homebrew/opt/cbc/bin:$PATH"
-
 # pip installs its binaries here. Used for AWS CLI
 export PATH="$PATH:/Users/yboulkaid/.local/bin"
 
@@ -47,7 +50,6 @@ source $HOME/.asdf/asdf.sh
 if [ "$TMUX" = "" ]; 
 then tmux attach -t base || tmux new -s base
 fi
-export DIRENV_LOG_FORMAT=
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
