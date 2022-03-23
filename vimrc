@@ -68,6 +68,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'jparise/vim-graphql'
   Plug 'vim-python/python-syntax'
+  Plug 'fladson/vim-kitty'
 
   Plug 'rafamadriz/neon', { 'branch': 'main' }
   Plug 'neovim/nvim-lspconfig'
