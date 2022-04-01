@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'github/copilot.vim'
 
   " Snippets
   Plug 'honza/vim-snippets'
@@ -175,6 +176,9 @@ call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
 xmap <C-e> <Plug>(neosnippet_expand_target)
+
+" Hardcode node version as node >16 is required on Apple Silicon
+let g:copilot_node_command='/Users/yboulkaid/.asdf/installs/nodejs/17.8.0/bin/node'
 
 " Snippets config
 let g:neosnippet#enable_snipmate_compatibility = 1

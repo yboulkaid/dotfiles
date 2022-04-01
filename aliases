@@ -8,20 +8,16 @@ alias v=nvim
 alias b=bundle
 alias be='bundle exec'
 alias tmux='tmux -u'
-alias ctags="`brew --prefix`/bin/ctags"
 alias dc='docker-compose'
-alias rake='noglob rake'
 alias scheme='rlwrap -r scheme'
+alias ctags="`brew --prefix`/bin/ctags"
 alias tags='ctags -R --exclude=node_modules --exclude=.git .'
 alias rc='spring rails c'
+alias rs='spring rails s'
 
 alias dotf='cd ~/Projects/yboulkaid/dotfiles'
-alias dl='cd ~/Downloads'
 
 alias pu='cd ~/Projects/UniversalAvenue/UniversalAvenue'
-alias pg='cd ~/Projects/UniversalAvenue/galaxy'
 alias sp='cd ~/Projects/UniversalAvenue/smart-portal'
-alias vu='cd ~/Projects/UniversalAvenue/UniversalAvenue; nvim'
-alias vg='cd ~/Projects/UniversalAvenue/galaxy; nvim'
 
 alias edit-pr='hub issue update $(hub pr list -h  $(git rev-parse --abbrev-ref HEAD) | awk "{print $1}" | sed "s/#//") --edit'
