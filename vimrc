@@ -2,18 +2,42 @@ let mapleader = "\<Space>"
 
 language en_US
 
-set confirm
 set clipboard=unnamed
-set termguicolors
+set colorcolumn=100 " Set the column limit
+set completeopt=menuone,noinsert,noselect " Better completion experience
+set confirm
+set cursorline " Highlight the cursor line
+set expandtab
 set hidden " Allow buffer change w/o saving
+set icm=nosplit " Live preview splitting in neovim
 set lazyredraw " Don't update while executing macros
-set scrolloff=4 " Keep at least 4 lines below cursor
+set mouse=a " Enable mouse support
 set noswapfile " Remove temporary swap file
-
+set number
+set scrolloff=4 " Keep at least 4 lines below cursor
+set shiftwidth=2
+set shortmess+=I " No intro when starting Vim
+set signcolumn=yes " Always show sign column
+set softtabstop=2
+set tabstop=2
+set termguicolors
 set title
 
-set shortmess+=I " No intro when starting Vim
-set cursorline " Highligt the cursor line
+" Don't use ! and ? as word delimiters
+set iskeyword+=!
+set iskeyword+=?
+
+" Sane defaults for searching
+set gdefault
+set ignorecase
+set smartcase
+
+" More natural splits
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
+
+
 
 let g:loaded_python_provider=1
 
@@ -40,7 +64,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
-  Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
 
@@ -78,15 +101,11 @@ call plug#end()
 " Enable jsx highlighting on regular js files
 let g:jsx_ext_required = 0
 
-" Set the column limit
-set colorcolumn=100
-
-" Don't use ! and ? as word delimiters
-set iskeyword+=!
-set iskeyword+=?
-
+" File-specific set commands
 autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
 autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
+
 let g:neomake_slim_slimlint_maker = {
       \ 'exe': 'slim-lint',
       \ 'errorformat': '%f:%l [%t] %m'
@@ -116,20 +135,11 @@ let g:neomake_tempfile_dir = '/tmp/neomake'
 
 let g:neomake_virtualtext_current_error = 0
 
-" Always show sign column
-set signcolumn=yes
-
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set number
-
 colorscheme neon
 
 " Tab buffer switching
-nmap <Tab> :bn<cr>
-nmap <S-Tab> :bp<cr>
+nmap <Tab> :BufferLineCycleNext<CR>
+nmap <S-Tab> :BufferLineCyclePrev<CR>
 
 " Insert new lines above or below the cursor
 nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
@@ -235,11 +245,6 @@ let g:fzf_preview_window = ''
 " https://github.com/junegunn/fzf.vim/issues/346
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-" More natural splits
-" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-set splitbelow
-set splitright
-
 nmap zz za
 
 " Move up and down by visible lines if current line is wrapped
@@ -259,11 +264,6 @@ nmap <D-s> :w<cr>
 " https://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-
-" Sane defaults for searching
-set ignorecase
-set smartcase
-set gdefault
 
 " Split edit your vimrc.
 nmap <leader>vr :e ~/.vimrc<cr>
@@ -289,14 +289,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Leader F and C-f for search
 map <leader>f :Ag<cr>
 
-" Live preview splitting in neovim
-set icm=nosplit
-
-" Enable mouse support
-set mouse=a
-
-autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
-
 " Open in Github
 map <leader>gh :GBrowse<cr>
 
@@ -306,9 +298,6 @@ map <leader>ghm :GBrowse master:%<cr>
 " Quickfix
 nmap <M-Down> :cn<cr>
 nmap <M-Up> :cp<cr>
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
 
 " I'm too old to re-learn
 " https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
@@ -327,6 +316,10 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require'colorizer'.setup()
-require('bufferline').setup{}
+require('bufferline').setup{
+  options = {
+    show_buffer_close_icons = false,
+  }
+}
 require('lualine').setup()
 EOF
