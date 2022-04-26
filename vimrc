@@ -37,8 +37,6 @@ set smartcase
 set splitbelow
 set splitright
 
-
-
 let g:loaded_python_provider=1
 
 call plug#begin('~/.vim/plugged')
@@ -98,12 +96,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
-" Enable jsx highlighting on regular js files
-let g:jsx_ext_required = 0
-
 " File-specific set commands
-autocmd! BufNewFile,BufRead Gemfile set filetype=ruby
-autocmd filetype crontab setlocal nobackup nowritebackup
 autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
 
 let g:neomake_slim_slimlint_maker = {
@@ -135,6 +128,7 @@ let g:neomake_tempfile_dir = '/tmp/neomake'
 
 let g:neomake_virtualtext_current_error = 0
 
+let g:neon_style = 'default'
 colorscheme neon
 
 " Tab buffer switching
@@ -154,9 +148,6 @@ nmap <M-J> ]e
 
 vmap <M-K> [egv
 vmap <M-J> ]egv
-
-" Show the command while typing it
-set showcmd
 
 " Alt + w to close the buffer
 nmap <M-w> :BD!<cr>
@@ -187,21 +178,12 @@ imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
 xmap <C-e> <Plug>(neosnippet_expand_target)
 
-" Hardcode node version as node >16 is required on Apple Silicon
+" Hardcode Copilot node version as node >16 is required on Apple Silicon
 let g:copilot_node_command='/Users/yboulkaid/.asdf/installs/nodejs/17.8.0/bin/node'
 
 " Snippets config
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = '~/Projects/yboulkaid/dotfiles/snippets'
-
-" Set python preference
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
 
 " Setup VTR and vim-rspec
 augroup setup_vtr
@@ -268,8 +250,6 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 " Split edit your vimrc.
 nmap <leader>vr :e ~/.vimrc<cr>
 
-nmap <leader>gc :set filetype=gitcommit<cr>
-
 " Auto source vimrc on save
 augroup reload_vimrc
   autocmd!
@@ -286,7 +266,7 @@ let NERDTreeShowHidden=1
 " Close vim when only nerdtree is left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Leader F and C-f for search
+" Leader F for search
 map <leader>f :Ag<cr>
 
 " Open in Github
@@ -305,7 +285,7 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "ruby", "nix" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
