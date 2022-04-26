@@ -8,7 +8,6 @@ set completeopt=menuone,noinsert,noselect " Better completion experience
 set confirm
 set cursorline " Highlight the cursor line
 set expandtab
-set hidden " Allow buffer change w/o saving
 set icm=nosplit " Live preview splitting in neovim
 set lazyredraw " Don't update while executing macros
 set mouse=a " Enable mouse support
@@ -76,7 +75,6 @@ call plug#begin('~/.vim/plugged')
   " Text objects
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'kana/vim-textobj-line'
 
   " Motions
   Plug 'vim-scripts/ReplaceWithRegister'
@@ -87,8 +85,6 @@ call plug#begin('~/.vim/plugged')
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
-  Plug 'cakebaker/scss-syntax.vim'
-  Plug 'jparise/vim-graphql'
   Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
 
@@ -285,7 +281,7 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "nix" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "ruby", "nix", "scss", "graphql" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
