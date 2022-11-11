@@ -59,6 +59,7 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'scrooloose/nerdtree'
+  Plug 'PhilRunninger/nerdtree-visual-selection'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
@@ -262,6 +263,17 @@ let NERDTreeShowHidden=1
 
 " Close vim when only nerdtree is left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Remove when https://github.com/preservim/nerdtree/issues/1321 is fixed
+let g:NERDTreeMinimalMenu=1
+
+" Disble confirmations for batch edits
+let g:nerdtree_vis_confirm_open=0
+let g:nerdtree_vis_confirm_delete=0
+let g:nerdtree_vis_confirm_copy=0
+let g:nerdtree_vis_confirm_move=0
+
+let g:NERDTreeAutoDeleteBuffer=1
 
 " Leader F for search
 map <leader>f :Ag<cr>
