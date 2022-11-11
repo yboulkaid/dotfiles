@@ -8,6 +8,10 @@ Host ua-tooling-dev
   HostName ec2-34-253-8-42.eu-west-1.compute.amazonaws.com
   User dev
 
+Host ua-tooling-head
+  HostName ec2-34-253-8-42.eu-west-1.compute.amazonaws.com
+  User head
+
 Host nas.el
   User yboulkaid
   Port 2222
