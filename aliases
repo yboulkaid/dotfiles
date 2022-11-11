@@ -11,7 +11,7 @@ alias tmux='tmux -u'
 alias dc='docker-compose'
 alias scheme='rlwrap -r scheme'
 alias ctags="`brew --prefix`/bin/ctags"
-alias tags='ctags -R --exclude=node_modules --exclude=.git .'
+alias tags='ctags -R --exclude=node_modules --exclude=.git --exclude=.gem .'
 alias rc='spring rails c'
 alias rs='spring rails s'
 
