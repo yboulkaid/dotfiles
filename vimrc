@@ -82,6 +82,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'andymass/vim-matchup'
+  Plug 'AndrewRadev/splitjoin.vim'
 
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -194,6 +195,10 @@ function! VtrForRuby()
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
 endfunction
+
+let g:splitjoin_ruby_options_as_arguments = 1
+let g:splitjoin_trailing_comma = 1
+let g:splitjoin_ruby_hanging_args = 0
 
 map <Leader>vtra :VtrAttachToPane<cr>
 
