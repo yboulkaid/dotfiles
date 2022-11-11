@@ -299,13 +299,13 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "nix", "scss", "graphql" },
+  ensure_installed = { "ruby", "scss", "graphql" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
   },
   indent = {
-    enable = false
+    enable = true
   }
 }
 
