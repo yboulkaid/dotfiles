@@ -178,7 +178,7 @@ smap <C-e> <Plug>(neosnippet_expand_or_jump)
 xmap <C-e> <Plug>(neosnippet_expand_target)
 
 " Hardcode Copilot node version as node >16 is required on Apple Silicon
-let g:copilot_node_command='/Users/yboulkaid/.asdf/installs/nodejs/17.8.0/bin/node'
+" let g:copilot_node_command='/Users/yboulkaid/.asdf/installs/nodejs/17.8.0/bin/node'
 
 " Snippets config
 let g:neosnippet#enable_snipmate_compatibility = 1
@@ -218,7 +218,7 @@ autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md
 nmap <F12> :tag <C-R><C-W> <cr>
 
 " Comment a line shortcut
-nmap <C-c> gcil
+nmap <C-c> gc$
 
 " Ctrl-P for Fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
