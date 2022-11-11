@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'github/copilot.vim'
+  " Plug 'github/copilot.vim'
 
   " Snippets
   Plug 'honza/vim-snippets'
@@ -105,6 +105,7 @@ let g:neomake_javascript_eslint_maker = {
     \ 'errorformat': '%f: line %l\, col %c\, %m'
     \ }
 
+    " \ 'exe': 'script/fmt',
 let g:neomake_ruby_rubocop_maker = {
     \ 'exe': 'bin/rubocop',
     \ 'args': ['--format', 'emacs', '--force-exclusion', '--display-cop-names'],
