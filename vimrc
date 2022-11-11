@@ -85,7 +85,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
 
   " Syntax
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'commit': '4cccb6f494', 'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
   Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
