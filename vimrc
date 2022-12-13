@@ -41,21 +41,25 @@ let g:loaded_python_provider=1
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'neomake/neomake'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':TSUpdate' }
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
-  " Plug 'github/copilot.vim'
 
   " Snippets
   Plug 'honza/vim-snippets'
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'dcampos/nvim-snippy'
+  Plug 'dcampos/cmp-snippy'
 
   " Interface
   Plug 'scrooloose/nerdtree'
@@ -91,7 +95,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'fladson/vim-kitty'
 
   Plug 'rafamadriz/neon', { 'branch': 'main' }
-  Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 " File-specific set commands
@@ -156,33 +159,6 @@ nmap Q :q<cr>
 
 " Don't show matchup in status line
 let g:matchup_matchparen_offscreen = {}
-
-" Run deoplete
-let g:deoplete#enable_at_startup = 0
-autocmd InsertEnter * call deoplete#enable()
-call deoplete#custom#option('max_list', 5)
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-Y><C-c>" : "\<CR>"
-
-" Don't press escape key twice to quit insert mode https://github.com/Shougo/deoplete.nvim/issues/386
-let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
-
-" Disable CTags source
-call deoplete#custom#option('ignore_sources', {'_': ['tag']})
-
-" Plugin key-mappings.
-imap <C-e> <Plug>(neosnippet_expand_or_jump)
-smap <C-e> <Plug>(neosnippet_expand_or_jump)
-xmap <C-e> <Plug>(neosnippet_expand_target)
-
-" Hardcode Copilot node version as node >16 is required on Apple Silicon
-" let g:copilot_node_command='/Users/yboulkaid/.asdf/installs/nodejs/17.8.0/bin/node'
-
-" Snippets config
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory = '~/Projects/yboulkaid/dotfiles/snippets'
 
 " Setup VTR and vim-rspec
 augroup setup_vtr
@@ -250,7 +226,7 @@ nmap <D-s> :w<cr>
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-" Split edit your vimrc.
+" Edit your vimrc.
 nmap <leader>vr :e ~/.vimrc<cr>
 
 " Auto source vimrc on save
@@ -299,7 +275,7 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "scss", "graphql" },
+  ensure_installed = { "ruby", "scss", "graphql", "lua" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
@@ -310,10 +286,78 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require'colorizer'.setup()
+
 require('bufferline').setup{
   options = {
     show_buffer_close_icons = false,
   }
 }
+
 require('lualine').setup()
+
+-- Set up nvim-cmp.
+local cmp = require'cmp'
+local snippy = require('snippy')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      snippy.expand_snippet(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-e>'] = function(fallback)
+      if snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
+      else
+        fallback()
+      end
+    end,
+    ['<CR>'] = function(fallback)
+        if cmp.visible() then
+          vim.api.nvim_input('<Esc><Esc>')
+        else
+          fallback()
+        end
+      end,
+    ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+  }),
+  sources = cmp.config.sources(
+    {
+      { name = 'buffer', max_item_count = 2 },
+    },
+    {
+      { name = 'nvim_lsp' },
+      { name = 'snippy', max_item_count = 1 },
+    }
+  )
+})
+
+require('snippy').setup({
+  mappings = {
+    is = {
+      ['<C-e>'] = 'expand_or_advance',
+    },
+  },
+})
+
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path', max_item_count = 10 }
+  }, {
+    { name = 'cmdline', max_item_count = 3 }
+  })
+})
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 EOF
