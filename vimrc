@@ -8,8 +8,7 @@ set completeopt=menuone,noinsert,noselect " Better completion experience
 set confirm
 set cursorline " Highlight the cursor line
 set expandtab
-set icm=nosplit " Live preview splitting in neovim
-set lazyredraw " Don't update while executing macros
+set inccommand=nosplit " Live preview splitting in neovim
 set mouse=a " Enable mouse support
 set noswapfile " Remove temporary swap file
 set number
@@ -36,15 +35,13 @@ set smartcase
 set splitbelow
 set splitright
 
-let g:loaded_python_provider=1
-
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'neomake/neomake'
+  Plug 'mfussenegger/nvim-lint'
   Plug 'qpkorr/vim-bufkill'
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-unimpaired'
@@ -63,7 +60,7 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'scrooloose/nerdtree'
-  Plug 'PhilRunninger/nerdtree-visual-selection'
+  " Plug 'PhilRunninger/nerdtree-visual-selection'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
@@ -99,36 +96,6 @@ call plug#end()
 
 " File-specific set commands
 autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
-
-let g:neomake_slim_slimlint_maker = {
-      \ 'exe': 'slim-lint',
-      \ 'errorformat': '%f:%l [%t] %m'
-      \ }
-let g:neomake_javascript_eslint_maker = {
-    \ 'exe': 'eslint',
-    \ 'args': ['--no-color','--format', 'compact'],
-    \ 'errorformat': '%f: line %l\, col %c\, %m'
-    \ }
-
-    " \ 'exe': 'script/fmt',
-let g:neomake_ruby_rubocop_maker = {
-    \ 'exe': 'bin/rubocop',
-    \ 'args': ['--format', 'emacs', '--force-exclusion', '--display-cop-names'],
-    \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
-    \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
-    \ 'output_stream': 'stdout',
-    \ }
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_slim_enabled_makers = ['slimlint']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 1s; no delay when writing).
-call neomake#configure#automake('rw', 100)
-let g:neomake_tempfile_dir = '/tmp/neomake'
-
-let g:neomake_virtualtext_current_error = 0
 
 let g:neon_style = 'default'
 colorscheme neon
@@ -376,4 +343,14 @@ cmp.setup.cmdline(':', {
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Setup nvim-lint Linters
+require('lint').linters_by_ft = {
+  ruby = {'rubocop'}
+}
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
 EOF
