@@ -356,7 +356,6 @@ cmp.setup({
 })
 
 require('snippy').setup({
-  snippet_dirs = '~/.snippets',
   mappings = {
     is = {
       ['<C-e>'] = 'expand_or_advance',
