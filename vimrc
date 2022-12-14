@@ -155,7 +155,15 @@ nmap <Leader>- :split<cr>
 nmap <Leader>/ :split<cr>
 
 " Remove trailing whitespace
-autocmd FileType yaml,ruby,html,haml,slim,css,scss,sass,js,javascript,vim,yml,md,prolog,python autocmd BufWritePre <buffer> %s/\s\+$//e
+fun! StripTrailingWhitespace()
+  " Don't strip on these filetypes
+  if &ft =~ 'markdown'
+    return
+  endif
+
+  %s/\s\+$//e
+endfun
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Go to method definition
 nmap <F12> :tag <C-R><C-W> <cr>
