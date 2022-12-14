@@ -1,2 +1,2 @@
 DOTFILES_DIRS="/Users/yboulkaid/Projects/yboulkaid/dotfiles"
-EXCLUDES="snippets kinesis_qwerty.txt"
+EXCLUDES="kinesis_qwerty.txt"

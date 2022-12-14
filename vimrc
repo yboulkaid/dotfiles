@@ -297,6 +297,7 @@ require('lualine').setup()
 
 -- Set up nvim-cmp.
 local cmp = require'cmp'
+local cmp_buffer = require('cmp_buffer')
 local snippy = require('snippy')
 
 cmp.setup({
@@ -305,6 +306,7 @@ cmp.setup({
       snippy.expand_snippet(args.body)
     end,
   },
+
   mapping = cmp.mapping.preset.insert({
     ['<C-e>'] = function(fallback)
       if snippy.can_expand_or_advance() then
@@ -328,18 +330,33 @@ cmp.setup({
         end
       end,
   }),
+
   sources = cmp.config.sources(
     {
-      { name = 'buffer', max_item_count = 2 },
+      { name = 'buffer',
+        max_item_count = 4,
+        option = {
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end
+        }
+      },
     },
     {
       { name = 'nvim_lsp' },
       { name = 'snippy', max_item_count = 1 },
     }
-  )
+  ),
+
+  sorting = {
+    comparators = {
+      function(...) return cmp_buffer:compare_locality(...) end,
+    }
+  }
 })
 
 require('snippy').setup({
+  snippet_dirs = '~/.snippets',
   mappings = {
     is = {
       ['<C-e>'] = 'expand_or_advance',
