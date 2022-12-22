@@ -35,6 +35,10 @@ set smartcase
 set splitbelow
 set splitright
 
+" Disable netrw
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -59,8 +63,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dcampos/cmp-snippy'
 
   " Interface
-  Plug 'scrooloose/nerdtree'
-  " Plug 'PhilRunninger/nerdtree-visual-selection'
+  Plug 'nvim-tree/nvim-tree.lua'
   Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
@@ -134,7 +137,7 @@ augroup setup_vtr
 augroup END
 
 function! VtrForRuby()
-  let g:rspec_command = "VtrSendCommand! spring rspec {spec}"
+  let g:rspec_command = "VtrSendCommand! bin/rspec {spec}"
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
 endfunction
@@ -211,25 +214,8 @@ augroup reload_vimrc
 augroup END
 
 " Open explorer
-map <leader>, :NERDTreeToggle<cr>
-nmap <F10> :NERDTreeFind<cr>
-
-" Show hidden files in nerdtree
-let NERDTreeShowHidden=1
-
-" Close vim when only nerdtree is left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Remove when https://github.com/preservim/nerdtree/issues/1321 is fixed
-let g:NERDTreeMinimalMenu=1
-
-" Disble confirmations for batch edits
-let g:nerdtree_vis_confirm_open=0
-let g:nerdtree_vis_confirm_delete=0
-let g:nerdtree_vis_confirm_copy=0
-let g:nerdtree_vis_confirm_move=0
-
-let g:NERDTreeAutoDeleteBuffer=1
+map <leader>, :NvimTreeToggle<cr>
+nmap <F10> :NvimTreeFindFile<cr>
 
 " Leader F for search
 map <leader>f :Ag<cr>
@@ -352,13 +338,28 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- Set up nvim-tree.
+require("nvim-tree").setup({
+  renderer = {
+    group_empty = true,
+    add_trailing = true,
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        git = false,
+      },
+    },
+  },
+})
+
 -- Setup nvim-lint Linters
 require('lint').linters_by_ft = {
   ruby = {'rubocop'}
 }
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   callback = function()
-    require('lint').try_lint()
+    -- require('lint').try_lint()
   end,
 })
 EOF
