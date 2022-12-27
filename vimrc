@@ -20,6 +20,7 @@ set softtabstop=2
 set tabstop=2
 set termguicolors
 set title
+set updatetime=250
 
 " Don't use ! and ? as word delimiters
 set iskeyword+=!
@@ -38,6 +39,7 @@ set splitright
 " Disable netrw
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
+:command! -nargs=1 Browse silent execute '!open' shellescape(<q-args>,1)
 
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -254,7 +256,16 @@ require('bufferline').setup{
   }
 }
 
-require('lualine').setup()
+require('lualine').setup {
+  sections = {
+    lualine_a = {},
+    lualine_b = {'branch', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+}
 
 -- Set up nvim-cmp.
 local cmp = require'cmp'
@@ -340,6 +351,11 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Set up nvim-tree.
 require("nvim-tree").setup({
+  actions = {
+    remove_file = {
+      close_window = false
+    },
+  },
   renderer = {
     group_empty = true,
     add_trailing = true,
@@ -359,7 +375,12 @@ require('lint').linters_by_ft = {
 }
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   callback = function()
-    -- require('lint').try_lint()
+    require('lint').try_lint()
   end,
 })
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = true,
+})
+vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})]]
 EOF
