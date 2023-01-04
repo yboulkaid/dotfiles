@@ -21,3 +21,4 @@ alias pu='cd ~/Projects/UniversalAvenue/UniversalAvenue'
 alias sp='cd ~/Projects/UniversalAvenue/smart-portal'
 
 alias edit-pr='hub issue update $(hub pr list -h  $(git rev-parse --abbrev-ref HEAD) | awk "{print $1}" | sed "s/#//") --edit'
+alias flush-dns-cache='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
