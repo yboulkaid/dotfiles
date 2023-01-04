@@ -382,5 +382,9 @@ vim.diagnostic.config({
   virtual_text = false,
   underline = true,
 })
-vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})]]
+vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+  callback = function()
+    vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})
+  end,
+})
 EOF
