@@ -246,7 +246,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   indent = {
-    enable = true
+    enable = true,
+    disable = { "ruby" },
   }
 }
 
@@ -356,6 +357,11 @@ require("nvim-tree").setup({
   actions = {
     remove_file = {
       close_window = false
+    },
+    open_file = {
+      window_picker = {
+        enable = false,
+      }
     },
   },
   renderer = {
