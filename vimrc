@@ -96,8 +96,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
 
-  " Plug 'rafamadriz/neon', { 'branch': 'main' }
-  Plug '~/Projects/yboulkaid/neon'
+  Plug 'yboulkaid/neon', { 'branch': 'main' }
+  " Plug '~/Projects/yboulkaid/neon'
   Plug 'nvim-treesitter/playground'
 call plug#end()
 

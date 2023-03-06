@@ -37,8 +37,8 @@ export FZF_CTRL_R_OPTS=--sort
 # Fuzzy find project and open vim
 pp() {
   local dir
-  dir=$(find ~/Projects -type d -maxdepth 2 | sed 's/\/Users\/yboulkaid\/Projects\///g' | fzf ) &&
-  cd "/Users/yboulkaid/Projects/$dir"
+  dir=$(find ~/Projects -type d -maxdepth 2 | sed 's/.*Projects\///g' | fzf ) &&
+  cd "$HOME/Projects/$dir"
 }
 
 setopt auto_cd
@@ -50,7 +50,7 @@ unsetopt nomatch
 
 source $HOME/.asdf/asdf.sh
 
-if [ "$TMUX" = "" ]; 
+if [ "$TMUX" = "" ];
 then tmux attach -t base || tmux new -s base
 fi
 
