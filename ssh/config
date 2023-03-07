@@ -1,8 +1,9 @@
 Host *
   AddKeysToAgent yes
   StrictHostKeyChecking no
+  UseKeychain yes
+  IdentityFile ~/.ssh/youssef_workato
   ForwardAgent no
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 Host ua-tooling-dev
   HostName ec2-54-75-43-132.eu-west-1.compute.amazonaws.com
