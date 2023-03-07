@@ -14,6 +14,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias tags='ctags -R --exclude=node_modules --exclude=.git --exclude=.gem .'
 alias rc='spring rails c'
 alias rs='spring rails s'
+alias lg=lazygit
 
 alias dotf='cd ~/Projects/yboulkaid/dotfiles'
 
