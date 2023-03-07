@@ -48,25 +48,12 @@ eval "$(direnv hook zsh)"
 # Cf. https://github.com/thoughtbot/dotfiles/pull/194
 unsetopt nomatch
 
-source $HOME/.asdf/asdf.sh
+if [[ -f $HOME/.asdf/asdf.sh ]]; then
+  source $HOME/.asdf/asdf.sh
+fi
 
 if [ "$TMUX" = "" ];
 then tmux attach -t base || tmux new -s base
 fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/yboulkaid/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/yboulkaid/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/yboulkaid/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/yboulkaid/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
