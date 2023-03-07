@@ -1,0 +1,5 @@
+Host *
+  AddKeysToAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/youssef_workato
+  ForwardAgent no

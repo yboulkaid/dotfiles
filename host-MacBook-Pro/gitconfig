@@ -1,0 +1,15 @@
+[user]
+	name = Youssef Boulkaid
+	email = youssef.boulkaid@workato.com
+[push]
+	default = current
+[alias]
+	co = checkout
+	st = s
+	s = status
+[core]
+	excludesfile = ~/.gitignore_global
+[pull]
+	rebase = true
+[init]
+	defaultBranch = master
