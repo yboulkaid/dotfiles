@@ -52,8 +52,17 @@ if [[ -f $HOME/.asdf/asdf.sh ]]; then
   source $HOME/.asdf/asdf.sh
 fi
 
+if [[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]]; then
+  source /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
+
 if [ "$TMUX" = "" ];
 then tmux attach -t base || tmux new -s base
 fi
 
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# Workato:
+export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
+
+# instantclient
+export OCI_DIR="$HOME/instantclient_12_1"
+export DYLD_LIBRARY_PATH="$HOME/instantclient_12_1"
