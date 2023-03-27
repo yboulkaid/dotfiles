@@ -1,25 +1,32 @@
-alias ll="ls -lah"
+# Shortcuts
 alias ..="cd .."
-
-alias log='tail -f log/development.log'
-
-alias vim=nvim
-alias v=nvim
 alias b=bundle
 alias be='bundle exec'
-alias tmux='tmux -u'
 alias dc='docker-compose'
-alias scheme='rlwrap -r scheme'
-alias ctags="`brew --prefix`/bin/ctags"
-alias tags='ctags -R --exclude=node_modules --exclude=.git --exclude=.gem .'
-alias rc='spring rails c'
-alias rs='spring rails s'
 alias lg=lazygit
+alias v=nvim
+alias vim=nvim
 
-alias dotf='cd ~/Projects/yboulkaid/dotfiles'
+# Wrappers
+alias ctags="`brew --prefix`/bin/ctags"
+alias ll="ls -lah"
+alias scheme='rlwrap -r scheme'
+alias tags='ctags -R --exclude=node_modules --exclude=.git --exclude=.gem .'
+alias tmux='tmux -u'
 
-alias pu='cd ~/Projects/UniversalAvenue/UniversalAvenue'
-alias sp='cd ~/Projects/UniversalAvenue/smart-portal'
-
+# Magic
 alias edit-pr='hub issue update $(hub pr list -h  $(git rev-parse --abbrev-ref HEAD) | awk "{print $1}" | sed "s/#//") --edit'
 alias flush-dns-cache='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+
+# Navigation
+alias dotf='cd ~/Projects/yboulkaid/dotfiles'
+alias w='cd ~/Projects/workato/workato'
+
+# Rails
+alias log='tail -f log/development.log'
+alias rc='bin/rails c'
+alias rs='bin/rails s'
+
+# Workato
+# Console in preview:
+alias pc='kubectl get pods -n preview -o custom-columns=NAME:.metadata.name | grep preview-background | xargs -o -n 1 -I {} kubectl exec --namespace preview -it {} -- bash -c "/runner/init rails c"'
