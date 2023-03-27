@@ -3,7 +3,7 @@ let mapleader = "\<Space>"
 language en_US
 
 set clipboard=unnamed
-set colorcolumn=100 " Set the column limit
+set colorcolumn=180 " Set the column limit
 set completeopt=menuone,noinsert,noselect " Better completion experience
 set confirm
 set cursorline " Highlight the cursor line
@@ -95,6 +95,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim'
   Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
+  Plug 'zorab47/procfile.vim'
 
   Plug 'yboulkaid/neon', { 'branch': 'main' }
   " Plug '~/Projects/yboulkaid/neon'
@@ -179,14 +180,21 @@ nmap <F12> :tag <C-R><C-W> <cr>
 nmap <C-c> gc$
 
 " Ctrl-P for Fzf
-let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
-nmap <silent> <C-p> :Files<cr>
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden -g ""'
+nmap <silent> <C-p> :GFiles<cr>
 nmap <silent> <leader>p :Buffers<cr>
 let g:fzf_preview_window = ''
 
-" Don't match patterns in the filename
-" https://github.com/junegunn/fzf.vim/issues/346
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" https://github.com/junegunn/fzf.vim#example-advanced-ripgrep-integration
+" https://github.com/junegunn/fzf/issues/2421
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--disabled', '--query', a:query, '--bind', 'change:reload:sleep 0.2; '.reload_command]}
+  call fzf#vim#grep(initial_command, 1, spec, a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 nmap zz za
 
@@ -222,13 +230,13 @@ map <leader>, :NvimTreeToggle<cr>
 nmap <F10> :NvimTreeFindFile<cr>
 
 " Leader F for search
-map <leader>f :Ag<cr>
+map <leader>f :RG<cr>
 
 " Open in Github
 map <leader>gh :GBrowse<cr>
 
 " Github to master
-map <leader>ghm :GBrowse master:%<cr>
+map <leader>ghm :GBrowse develop:%<cr>
 
 " Quickfix
 nmap <M-Down> :cn<cr>
@@ -240,7 +248,7 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "scss", "graphql", "lua" },
+  ensure_installed = { "ruby", "scss", "graphql", "lua", "vim" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
