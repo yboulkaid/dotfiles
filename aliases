@@ -20,13 +20,9 @@ alias flush-dns-cache='sudo dscacheutil -flushcache; sudo killall -HUP mDNSRespo
 
 # Navigation
 alias dotf='cd ~/Projects/yboulkaid/dotfiles'
-alias w='cd ~/Projects/workato/workato'
 
 # Rails
 alias log='tail -f log/development.log'
 alias rc='bin/rails c'
 alias rs='bin/rails s'
 
-# Workato
-# Console in preview:
-alias pc='kubectl get pods -n preview -o custom-columns=NAME:.metadata.name | grep preview-background | xargs -o -n 1 -I {} kubectl exec --namespace preview -it {} -- bash -c "/runner/init rails c"'

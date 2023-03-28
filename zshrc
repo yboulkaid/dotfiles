@@ -24,6 +24,10 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin/"
 
 source ~/.aliases
 
+if [[ -f $HOME/.workatorc ]]; then
+  source $HOME/.workatorc
+fi
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -59,6 +63,8 @@ fi
 if [ "$TMUX" = "" ];
 then tmux attach -t base || tmux new -s base
 fi
+
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # Workato:
 export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
