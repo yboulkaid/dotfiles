@@ -7,6 +7,7 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export HISTSIZE=1000
 export DIRENV_LOG_FORMAT=
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # https://github.com/rails/rails/issues/38560
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -45,6 +46,10 @@ pp() {
   cd "$HOME/Projects/$dir"
 }
 
+bb() {
+  git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
+}
+
 setopt auto_cd
 eval "$(direnv hook zsh)"
 
@@ -72,3 +77,4 @@ export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
 # instantclient
 export OCI_DIR="$HOME/instantclient_12_1"
 export DYLD_LIBRARY_PATH="$HOME/instantclient_12_1"
+export ENV_SH_EXEC_CONTEXT=apple_silicon
