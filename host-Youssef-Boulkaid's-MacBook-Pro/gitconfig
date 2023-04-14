@@ -9,6 +9,9 @@
 	s = status
 [core]
 	excludesfile = ~/.gitignore_global
+	fsmonitor = true
+	untrackedcache = true
+	commentchar = ";"
 [pull]
 	rebase = true
 [init]
