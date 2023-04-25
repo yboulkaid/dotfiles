@@ -49,7 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'mfussenegger/nvim-lint'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'Townk/vim-autoclose'
+  Plug 'cohama/lexima.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
@@ -93,17 +93,20 @@ call plug#begin('~/.vim/plugged')
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
-  Plug 'vim-python/python-syntax'
+  " Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
   Plug 'zorab47/procfile.vim'
 
   Plug 'yboulkaid/neon', { 'branch': 'main' }
-  " Plug '~/Projects/yboulkaid/neon'
-  Plug 'nvim-treesitter/playground'
 call plug#end()
 
 " File-specific set commands
 autocmd Filetype gitcommit set colorcolumn=72 textwidth=72
+
+" Disable unused providers
+let g:loaded_python3_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
 
 let g:neon_style = 'default'
 colorscheme neon
