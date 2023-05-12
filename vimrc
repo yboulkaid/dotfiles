@@ -251,7 +251,7 @@ nnoremap Y Y
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "ruby", "scss", "graphql", "lua", "vim" },
+  ensure_installed = { "ruby", "scss", "lua", "vim" },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -376,9 +376,18 @@ local function copy_file_to(node)
     vim.fn.system { 'cp', '-R', file_src, file_out }
 end
 
-require('nvim-tree').setup {
-    }
+local function my_on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+end
+
 require("nvim-tree").setup({
+  on_attach = my_on_attach,
   actions = {
     remove_file = {
       close_window = false
@@ -388,13 +397,6 @@ require("nvim-tree").setup({
         enable = false,
       }
     },
-  },
-  view = {
-    mappings = {
-      list = {
-        { key = "c", action = "copy_file_to", action_cb = copy_file_to },
-      }
-    }
   },
   renderer = {
     group_empty = true,
@@ -411,7 +413,7 @@ require("nvim-tree").setup({
 
 -- Setup nvim-lint Linters
 require('lint').linters_by_ft = {
-  ruby = {'rubocop'}
+  -- ruby = {'rubocop'}
 }
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   callback = function()

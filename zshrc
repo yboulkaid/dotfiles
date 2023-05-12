@@ -8,6 +8,7 @@ export LC_CTYPE=en_US.UTF-8
 export HISTSIZE=1000
 export DIRENV_LOG_FORMAT=
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # https://github.com/rails/rails/issues/38560
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
