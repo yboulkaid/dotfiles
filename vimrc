@@ -49,7 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'mfussenegger/nvim-lint'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'cohama/lexima.vim'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
@@ -88,7 +88,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'andymass/vim-matchup'
-  Plug 'AndrewRadev/splitjoin.vim'
 
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
