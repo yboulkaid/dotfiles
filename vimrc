@@ -47,9 +47,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'mfussenegger/nvim-lint'
+  " Plug 'mfussenegger/nvim-lint'
+  Plug 'dense-analysis/ale'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'jiangmiao/auto-pairs'
+  " Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
@@ -70,6 +71,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
+  " Plug 'github/copilot.vim'
+  Plug 'zbirenbaum/copilot.lua'
+  " Plug 'zbirenbaum/copilot-cmp'
+  Plug 'folke/trouble.nvim'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -307,7 +312,7 @@ cmp.setup({
           fallback()
         end
       end,
-    ['<Tab>'] = function(fallback)
+    ['<M-Tab>'] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         else
@@ -347,7 +352,16 @@ require('snippy').setup({
     },
   },
 })
-
+require("copilot").setup({
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    keymap = {
+      accept = "<Tab>",
+    }
+}}
+)
+-- require("copilot_cmp").setup()
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
@@ -410,15 +424,20 @@ require("nvim-tree").setup({
   },
 })
 
--- Setup nvim-lint Linters
-require('lint').linters_by_ft = {
-  -- ruby = {'rubocop'}
-}
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  callback = function()
-    require('lint').try_lint()
-  end,
-})
+-- require('lint').linters_by_ft = {
+--   ruby = {'rubocop', 'ruby'}
+-- }
+-- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+--   callback = function()
+--     require('lint').try_lint()
+--   end,
+-- })
+
+-- Setup Ale Linters
+vim.g.ale_use_neovim_diagnostics_api= 1
+vim.g.ale_linters = { ruby = { 'rubocop', 'sorbet'} }
+vim.g.ale_fixers = { ruby = { 'rubocop', 'sorbet'} }
+
 vim.diagnostic.config({
   virtual_text = false,
   underline = true,
