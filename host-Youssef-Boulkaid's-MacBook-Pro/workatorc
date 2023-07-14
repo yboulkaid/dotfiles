@@ -4,20 +4,3 @@ alias d="env/env.sh dev"
 alias w='cd ~/Projects/workato/workato'
 # Console in preview:
 alias pc='kubectl get pods -n preview -o custom-columns=NAME:.metadata.name | grep preview-background | xargs -o -n 1 -I {} kubectl exec --namespace preview -it {} -- bash -c "/runner/init rails c"'
-
-checkout_preview_us() {
-  git fetch
-  git checkout preview_us
-  git reset --hard origin/preview_us
-
-  echo ""
-  echo "Merge your branch. Then exec deploy_preview_us"
-}
-
-deploy_preview_us() {
-  git update-index --skip-worktree Gemfile.lock
-
-  bin/deploy.sh workato preview us
-
-  git update-index --no-skip-worktree Gemfile.lock
-}
