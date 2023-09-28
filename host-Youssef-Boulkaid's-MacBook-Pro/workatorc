@@ -1,6 +1,7 @@
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 export VAULT_ADDR=https://vault.awstf.workato.com
+export DISABLE_SPRING=
 
 alias d="env/env.sh dev"
 alias w='cd ~/Projects/workato/workato'
