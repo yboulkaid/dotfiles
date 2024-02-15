@@ -47,10 +47,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  " Plug 'mfussenegger/nvim-lint'
   Plug 'dense-analysis/ale'
   Plug 'qpkorr/vim-bufkill'
-  " Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
@@ -67,13 +65,10 @@ call plug#begin('~/.vim/plugged')
 
   " Interface
   Plug 'nvim-tree/nvim-tree.lua'
-  Plug 'machakann/vim-highlightedyank'
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
-  " Plug 'github/copilot.vim'
   Plug 'zbirenbaum/copilot.lua'
-  " Plug 'zbirenbaum/copilot-cmp'
   Plug 'folke/trouble.nvim'
 
   " Tmux magic
@@ -97,7 +92,6 @@ call plug#begin('~/.vim/plugged')
   " Syntax
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'slim-template/vim-slim'
-  " Plug 'vim-python/python-syntax'
   Plug 'fladson/vim-kitty'
   Plug 'zorab47/procfile.vim'
 
@@ -162,6 +156,9 @@ map <Leader>vtra :VtrAttachToPane<cr>
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
+
+" Highlight yank
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
 
 " V split
 nmap <Leader>. :vsplit<cr>
@@ -235,6 +232,10 @@ augroup END
 " Open explorer
 map <leader>, :NvimTreeToggle<cr>
 nmap <F10> :NvimTreeFindFile<cr>
+
+" Folding
+setlocal foldmethod=indent
+set nofoldenable
 
 " Leader F for search
 map <leader>f :RG<cr>

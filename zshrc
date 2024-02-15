@@ -20,8 +20,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/opt/cbc/bin:$PATH"
 # pip installs its binaries here. Used for AWS CLI
 export PATH="$PATH:/Users/yboulkaid/.local/bin"
-# Nix
-export PATH="$PATH:/nix/var/nix/profiles/default/bin/"
+# Postgres.app
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 
 source ~/.aliases
