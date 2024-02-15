@@ -22,3 +22,7 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[rerere]
+	enabled = true
+[maintenance]
+	repo = /Users/youssef.boulkaid/Projects/workato/workato
