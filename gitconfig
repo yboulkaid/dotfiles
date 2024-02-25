@@ -9,7 +9,12 @@
 	s = status
 [core]
 	excludesfile = ~/.gitignore_global
+	pager = delta
 [pull]
 	rebase = true
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
