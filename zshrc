@@ -70,6 +70,8 @@ if [ "$TMUX" = "" ];
 then tmux attach -t base || tmux new -s base
 fi
 
+# ZSH completions
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # Workato:
