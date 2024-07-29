@@ -3,6 +3,9 @@ export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 export VAULT_ADDR=https://vault.awstf.workato.com
 export DISABLE_SPRING=
 export KUBECONFIG=~/.kube/kubeconfig-oidc-preview-us:~/.kube/kubeconfig-oidc-preview-eu
+export PATH="$HOME/Projects/workato/aws_admin/scripts:$PATH"
+export ECR_REGION=us-east-1
+export ECR_ACCOUNT=773267254890
 
 alias d="env/env.sh dev"
 alias w='cd ~/Projects/workato/workato'
@@ -14,3 +17,4 @@ workato_seeds () {
   sed -n 9,21p db/seeds/users.rb
   echo "\nDefault password: TestPwd1"
 }
+
