@@ -119,7 +119,7 @@ nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Paste on newlines with Option-P
-:nmap <M-p> ]p
+" :nmap <M-p> ]p
 
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
 nmap <M-K> [e
@@ -159,7 +159,7 @@ map <Leader>vtra :VtrAttachToPane<cr>
 nnoremap <silent> <leader>l :noh<CR>
 
 " Highlight yank
-au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
+" au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
 
 " V split
 nmap <Leader>. :vsplit<cr>
@@ -227,7 +227,7 @@ nmap <leader>vr :e ~/.vimrc<cr>
 " Auto source vimrc on save
 augroup reload_vimrc
   autocmd!
-  autocmd BufWritePost /Users/yboulkaid/.vimrc source $MYVIMRC
+  autocmd BufWritePost ~/.vimrc source $MYVIMRC
 augroup END
 
 " Open explorer
@@ -480,6 +480,11 @@ require("yanky").setup({
     ignore_registers = { "_" },
     update_register_on_cycle = false,
   },
+  highlight = {
+    on_put = true,
+    on_yank = true,
+    timer = 250,
+  },
   system_clipboard = {
     sync_with_ring = true,
   },
@@ -487,7 +492,7 @@ require("yanky").setup({
 
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+vim.keymap.set("n", "<M-p>", "<Plug>(YankyPutIndentAfterLinewise)")
 vim.keymap.set("n", "<M-n>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<M-N>", "<Plug>(YankyNextEntry)")
 EOF
