@@ -70,7 +70,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'zbirenbaum/copilot.lua'
   Plug 'folke/trouble.nvim'
-  Plug 'gbprod/yanky.nvim'
 
   " Tmux magic
   Plug 'christoomey/vim-tmux-navigator'
@@ -119,7 +118,7 @@ nnoremap <silent> <M-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Paste on newlines with Option-P
-" :nmap <M-p> ]p
+:nmap <M-p> :pu<CR>==
 
 " Bubble lines : http://vimcasts.org/episodes/bubbling-text/
 nmap <M-K> [e
@@ -159,7 +158,7 @@ map <Leader>vtra :VtrAttachToPane<cr>
 nnoremap <silent> <leader>l :noh<CR>
 
 " Highlight yank
-" au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
 
 " V split
 nmap <Leader>. :vsplit<cr>
@@ -470,29 +469,4 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
-
-require("yanky").setup({
-  ring = {
-    history_length = 100,
-    storage = "shada",
-    sync_with_numbered_registers = true,
-    cancel_event = "update",
-    ignore_registers = { "_" },
-    update_register_on_cycle = false,
-  },
-  highlight = {
-    on_put = true,
-    on_yank = true,
-    timer = 250,
-  },
-  system_clipboard = {
-    sync_with_ring = true,
-  },
-})
-
-vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-vim.keymap.set("n", "<M-p>", "<Plug>(YankyPutIndentAfterLinewise)")
-vim.keymap.set("n", "<M-n>", "<Plug>(YankyPreviousEntry)")
-vim.keymap.set("n", "<M-N>", "<Plug>(YankyNextEntry)")
 EOF
