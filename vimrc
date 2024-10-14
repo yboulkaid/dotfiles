@@ -246,6 +246,9 @@ map <leader>gh :GBrowse<cr>
 " Github to master
 map <leader>ghm :GBrowse develop:%<cr>
 
+" Rubocop autofix
+map <Leader>r :ALEFix<CR>
+
 " Quickfix
 nmap <M-Down> :cn<cr>
 nmap <M-Up> :cp<cr>
@@ -353,15 +356,6 @@ require('snippy').setup({
     },
   },
 })
-require("copilot").setup({
-  suggestion = {
-    enabled = true,
-    auto_trigger = true,
-    keymap = {
-      accept = "<Tab>",
-    }
-}}
-)
 -- require("copilot_cmp").setup()
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -375,6 +369,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- Set up lspconfig.
+local lspconfig = require('lspconfig')
+lspconfig.ruby_lsp.setup({})
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Set up nvim-tree.

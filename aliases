@@ -26,3 +26,5 @@ alias log='tail -f log/development.log'
 alias rc='bin/rails c'
 alias rs='bin/rails s'
 
+# s3cast
+alias podcast='~/Projects/s3cast/main.py --profile podcasting --bucket "yboulkaid-bildspraket"'
