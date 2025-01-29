@@ -1,5 +1,4 @@
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 export VAULT_ADDR=https://vault.awstf.workato.com
 export DISABLE_SPRING=
 export KUBECONFIG=~/.kube/kubeconfig-oidc-preview-us:~/.kube/kubeconfig-oidc-preview-eu
@@ -18,3 +17,6 @@ workato_seeds () {
   echo "\nDefault password: TestPwd1"
 }
 
+pr_release_msg () {
+  gh pr list --json url --author "@me" --label "ready to merge" | jq -r '.[] | .url + " (@yboulkaid)"'
+}

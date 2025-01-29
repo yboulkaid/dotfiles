@@ -1,5 +1,3 @@
-Include /Users/youssef.boulkaid/.colima/ssh_config
-
 Host *
   AddKeysToAgent yes
   StrictHostKeyChecking no

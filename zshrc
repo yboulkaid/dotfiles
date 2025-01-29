@@ -22,6 +22,8 @@ export PATH="/opt/homebrew/opt/cbc/bin:$PATH"
 export PATH="$PATH:/Users/yboulkaid/.local/bin"
 # Postgres.app
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+# Custom scripts
+export PATH="$PATH:$HOME/bin"
 
 
 source ~/.aliases
