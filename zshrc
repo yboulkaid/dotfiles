@@ -19,7 +19,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Homebrew CBC is keg-only
 export PATH="/opt/homebrew/opt/cbc/bin:$PATH"
 # pip installs its binaries here. Used for AWS CLI
-export PATH="$PATH:/Users/yboulkaid/.local/bin"
+export PATH="$PATH:/Users/youssefboulkaid/.local/bin"
 # Postgres.app
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 # Custom scripts
@@ -40,7 +40,7 @@ fi
 # Source fzf for fuzzy finding
 export FZF_TMUX_HEIGHT=10
 export FZF_CTRL_R_OPTS=--sort
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # Fuzzy find project and open vim
 pp() {
@@ -83,3 +83,6 @@ export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
 export OCI_DIR="$HOME/instantclient_12_1"
 export DYLD_LIBRARY_PATH="$HOME/instantclient_12_1"
 export ENV_SH_EXEC_CONTEXT=apple_silicon
+
+# https://unix.stackexchange.com/questions/452865/are-there-any-disadvantages-of-setting-noclobber
+set -o noclobber

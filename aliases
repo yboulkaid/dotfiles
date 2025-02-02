@@ -28,3 +28,9 @@ alias rs='bin/rails s'
 
 # s3cast
 alias podcast='~/Projects/s3cast/main.py --profile podcasting --bucket "yboulkaid-bildspraket"'
+
+# https://unix.stackexchange.com/questions/452865/are-there-any-disadvantages-of-setting-noclobber
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias nasel='ssh -t nas.el "cd /volume2/docker; bash --login"'
