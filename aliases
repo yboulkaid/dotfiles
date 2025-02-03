@@ -33,4 +33,7 @@ alias podcast='~/Projects/s3cast/main.py --profile podcasting --bucket "yboulkai
 alias cp='cp -i'
 alias mv='mv -i'
 
+# https://github.com/BurntSushi/ripgrep/issues/623
+alias rg="rg --hidden --glob '!.git'"
+
 alias nasel='ssh -t nas.el "cd /volume2/docker; bash --login"'
