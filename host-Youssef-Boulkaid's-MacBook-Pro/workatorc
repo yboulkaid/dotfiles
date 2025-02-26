@@ -4,6 +4,7 @@ export KUBECONFIG=~/.kube/kubeconfig-oidc-preview-us:~/.kube/kubeconfig-oidc-pre
 export PATH="$HOME/Projects/workato/aws_admin/scripts:$PATH"
 export ECR_REGION=us-east-1
 export ECR_ACCOUNT=773267254890
+export COPILOT_VIM_ENABLED=true
 
 export ASDF_DATA_DIR=/Users/youssef.boulkaid/.asdf
 export PATH="$ASDF_DATA_DIR/shims:$PATH"

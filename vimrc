@@ -356,7 +356,18 @@ require('snippy').setup({
     },
   },
 })
--- require("copilot_cmp").setup()
+
+if vim.fn.getenv("COPILOT_VIM_ENABLED") == "true" then
+  require("copilot").setup({
+    suggestion = {
+      enabled = true,
+      auto_trigger = true,
+      keymap = {
+        accept = "<Tab>",
+      }
+  }}
+  )
+end
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
