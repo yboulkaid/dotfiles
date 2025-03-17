@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'zbirenbaum/copilot.lua'
+  Plug 'augmentcode/augment.vim'
   Plug 'folke/trouble.nvim'
 
   " Tmux magic
@@ -367,6 +368,12 @@ if vim.fn.getenv("COPILOT_VIM_ENABLED") == "true" then
       }
   }}
   )
+end
+
+if vim.fn.getenv("AUGMENT_VIM_ENABLED") == "true" then
+  vim.g.augment_workspace_folders = { '~/Projects/workato/workato', '~/Projects/workato-devops/rspec-flaky-stats'  }
+  vim.keymap.set('n', '<leader>ai', ':Augment chat-toggle<CR>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>c', ':Augment chat ', { noremap = true, silent = true })
 end
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
