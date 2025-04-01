@@ -68,7 +68,7 @@ if [[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]]; then
   source /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
-if [ "$TMUX" = "" ];
+if [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]];
 then tmux attach -t base || tmux new -s base
 fi
 
