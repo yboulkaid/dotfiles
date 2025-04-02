@@ -1,5 +1,5 @@
 " To copy vim-plug install:
-" cp -r nvim/site nvim-vscode/site
+" cp -r ~/.local/share/nvim/site ~/.local/share/nvim-vscode/site
 
 let mapleader = "\<Space>"
 
