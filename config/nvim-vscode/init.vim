@@ -66,7 +66,7 @@ nmap <Leader>- :split<cr>
 nmap <Leader>/ :split<cr>
 
 " Comment a line shortcut
-nmap <C-c> gc$
+nmap <C-c> ^gc$
 
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
@@ -83,19 +83,13 @@ nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
 " Edit your vimrc.
-nmap <leader>vr :e ~/.vimrc-vscode<cr>
+nmap <leader>vr :e ~/.config/nvim-vscode/init.vim<cr>
 
 " Auto source vimrc on save
 augroup reload_vimrc
   autocmd!
-  autocmd BufWritePost ~/.vimrc-vscode source ~/.vimrc-vscode
+  autocmd BufWritePost ~/.config/nvim-vscode/init.vim source ~/.config/nvim-vscode/init.vim<cr>
 augroup END
-
-" Open in Github
-map <leader>gh :GBrowse<cr>
-
-" Github to master
-map <leader>ghm :GBrowse develop:%<cr>
 
 " I'm too old to re-learn
 " https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
