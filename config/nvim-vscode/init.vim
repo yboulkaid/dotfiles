@@ -3,27 +3,7 @@
 
 let mapleader = "\<Space>"
 
-language en_US
-
 set clipboard=unnamed
-set colorcolumn=180 " Set the column limit
-set completeopt=menuone,noinsert,noselect " Better completion experience
-set confirm
-set cursorline " Highlight the cursor line
-set expandtab
-set inccommand=nosplit " Live preview splitting in neovim
-set mouse=a " Enable mouse support
-set noswapfile " Remove temporary swap file
-set number
-set scrolloff=4 " Keep at least 4 lines below cursor
-set shiftwidth=2
-set shortmess+=I " No intro when starting Vim
-set signcolumn=yes " Always show sign column
-set softtabstop=2
-set tabstop=2
-set termguicolors
-set title
-set updatetime=250
 
 " Don't use ! and ? as word delimiters
 set iskeyword+=!
@@ -38,11 +18,6 @@ set smartcase
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
-
-" Disable netrw
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-:command! -nargs=1 Browse silent execute '!open' shellescape(<q-args>,1)
 
 call plug#begin('~/.vim/plugged-vscode')
   Plug 'tpope/vim-unimpaired'
@@ -75,21 +50,8 @@ nnoremap <silent> <M-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " Paste on newlines with Option-P
 :nmap <M-p> :pu<CR>==
 
-" Bubble lines : http://vimcasts.org/episodes/bubbling-text/
-nmap <M-K> [e
-nmap <M-J> ]e
-
-vmap <M-K> [egv
-vmap <M-J> ]egv
-
-" Alt + w to close the buffer
-nmap <M-w> :BD!<cr>
-
 " Q to close the buffer and window
 nmap Q :q<cr>
-
-" Don't show matchup in status line
-let g:matchup_matchparen_offscreen = {}
 
 " redraws the screen and removes any search highlighting.
 nnoremap <silent> <leader>l :noh<CR>
@@ -102,17 +64,6 @@ nmap <Leader>. :vsplit<cr>
 nmap <Leader>\ :vsplit<cr>
 nmap <Leader>- :split<cr>
 nmap <Leader>/ :split<cr>
-
-" Remove trailing whitespace
-fun! StripTrailingWhitespace()
-  " Don't strip on these filetypes
-  if &ft =~ 'markdown'
-    return
-  endif
-
-  %s/\s\+$//e
-endfun
-autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Comment a line shortcut
 nmap <C-c> gc$
@@ -137,7 +88,7 @@ nmap <leader>vr :e ~/.vimrc-vscode<cr>
 " Auto source vimrc on save
 augroup reload_vimrc
   autocmd!
-  autocmd BufWritePost ~/.vimrc-vscode source $MYVIMRC
+  autocmd BufWritePost ~/.vimrc-vscode source ~/.vimrc-vscode
 augroup END
 
 " Open in Github
@@ -149,3 +100,18 @@ map <leader>ghm :GBrowse develop:%<cr>
 " I'm too old to re-learn
 " https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
 nnoremap Y Y
+
+lua <<EOF
+local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+
+local function notify(cmd)
+    return string.format("<cmd>lua require'vscode'.action('%s')<CR>", cmd)
+end
+
+local function v_notify(cmd)
+    return string.format("<cmd>lua require'vscode'.action('%s')<CR>", cmd)
+end
+
+keymap('n', '<Leader>f', notify 'workbench.action.findInFiles', opts)
+EOF
