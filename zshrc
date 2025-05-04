@@ -72,6 +72,10 @@ if [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]];
 then tmux attach -t base || tmux new -s base
 fi
 
+if [[ -z "$TMUX" && "$TERM_PROGRAM" = "vscode" ]];
+then tmux attach -t vscode || tmux new -s vscode
+fi
+
 # ZSH completions
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
