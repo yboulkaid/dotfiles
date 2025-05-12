@@ -20,22 +20,10 @@ set splitbelow
 set splitright
 
 call plug#begin('~/.vim/plugged-vscode')
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
-
-  " Ruby dev
-  Plug 'tpope/vim-rails'
-  Plug 'thoughtbot/vim-rspec'
-
-  " Text objects
-  Plug 'kana/vim-textobj-user'
-  Plug 'nelstrom/vim-textobj-rubyblock'
-
   " Motions
   Plug 'vim-scripts/ReplaceWithRegister'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
-  Plug 'andymass/vim-matchup'
 call plug#end()
 
 " Disable unused providers
