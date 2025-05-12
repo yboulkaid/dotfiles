@@ -49,8 +49,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rhubarb'
   Plug 'dense-analysis/ale'
   Plug 'qpkorr/vim-bufkill'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
   Plug 'norcalli/nvim-colorizer.lua'
 
   " Snippets
@@ -68,8 +66,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'pbrisbin/vim-mkdir'
   Plug 'akinsho/nvim-bufferline.lua'
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'zbirenbaum/copilot.lua'
-  Plug 'augmentcode/augment.vim'
   Plug 'folke/trouble.nvim'
 
   " Tmux magic
@@ -79,10 +75,6 @@ call plug#begin('~/.vim/plugged')
   " Ruby dev
   Plug 'tpope/vim-rails'
   Plug 'thoughtbot/vim-rspec'
-
-  " Text objects
-  Plug 'kana/vim-textobj-user'
-  Plug 'nelstrom/vim-textobj-rubyblock'
 
   " Motions
   Plug 'vim-scripts/ReplaceWithRegister'
@@ -357,24 +349,6 @@ require('snippy').setup({
     },
   },
 })
-
-if vim.fn.getenv("COPILOT_VIM_ENABLED") == "true" then
-  require("copilot").setup({
-    suggestion = {
-      enabled = true,
-      auto_trigger = true,
-      keymap = {
-        accept = "<Tab>",
-      }
-  }}
-  )
-end
-
-if vim.fn.getenv("AUGMENT_VIM_ENABLED") == "true" then
-  vim.g.augment_workspace_folders = { '~/Projects/workato/workato', '~/Projects/workato-devops/rspec-flaky-stats'  }
-  vim.keymap.set('n', '<leader>ai', ':Augment chat-toggle<CR>', { noremap = true, silent = true })
-  vim.keymap.set('n', '<leader>c', ':Augment chat ', { noremap = true, silent = true })
-end
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
